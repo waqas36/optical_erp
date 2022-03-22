@@ -42,7 +42,7 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'price': '600',
+    'price': '1000',
     'currency': 'USD',
     'qweb': ['static/src/xml/*.xml'],
     'application': True,
