@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Tools',
-    'version': '0.1',
+    'version': '14.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'product', 'sale_management', 'website', 'website_sale'],
@@ -42,6 +42,9 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'price': '600',
+    'currency': 'USD',
     'qweb': ['static/src/xml/*.xml'],
-    'application': True
+    'application': True,
+    'images': ['/static/description/optical_erp.png'],
 }
