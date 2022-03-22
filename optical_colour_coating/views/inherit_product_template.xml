@@ -1,0 +1,78 @@
+<odoo>
+    <record id="inherit_product_template_form" model="ir.ui.view">
+        <field name="name">inherit.product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div/label[@for='purchase_ok']" position="after">
+                <div>
+                    <group>
+<!--                        <label for="product_type"/>-->
+                        <field name="product_type"/>
+                    </group>
+<!--                    <group>-->
+<!--                        <field name="test_one"/>-->
+<!--                        <field name="test_two"/>-->
+<!--                    </group>-->
+                </div>
+                <div attrs="{'invisible':[('product_type','!=', 'lens')]}">
+                    <field name="is_color"/>
+                    <label for="is_color"/>
+                </div>
+                <div attrs="{'invisible':[('product_type','!=', 'lens')]}">
+                    <field name="is_coating" />
+                    <label for="is_coating" />
+                </div>
+<!--                <div attrs="{'invisible':[('product_type','!=', 'lens')]}">-->
+<!--                    <field name="is_cod" />-->
+<!--                    <label for="is_cod" />-->
+<!--                </div>-->
+<!--                <div attrs="{'invisible':[('product_type','!=', 'lens')]}">-->
+<!--                    <field name="is_rlf" />-->
+<!--                    <label for="is_rlf" />-->
+<!--                </div>-->
+                <div>
+                    <group>
+                        <field name="color_ids" widget="many2many_tags" attrs="{'invisible': ['|',('is_color', '=', False), ('product_type','!=', 'lens')]}"/>
+                        <field name="coating_ids" widget="many2many_tags" attrs="{'invisible': ['|',('is_coating', '=', False), ('product_type','!=', 'lens')]}"/>
+                    </group>
+                </div>
+            </xpath>
+<!--            <xpath expr="//field[@name='product_type']" position="after" attrs="{'invisible':[('product_type','=', 'lens')]}">-->
+<!--                <field name="code"/>-->
+<!--            </xpath>-->
+            <xpath expr="//page[8]" position="after">
+                <page name="coating_desc" string="Coating Info" attrs="{'invisible':[('product_type','!=', 'coating')]}">
+                    <label for="coating_desc"/>
+                    <field name="coating_desc"/>
+                </page>
+            </xpath>
+            <xpath expr="//page[8]" position="after">
+                <page name="product_info" string="Product Info" attrs="{'invisible':['|',('product_type','=', 'coating'), ('product_type','=', 'color')]}">
+                    <label for="product_info"/>
+                    <field name="product_info"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="product_template_coating" model="product.template">-->
+<!--        <field name="name">Coating</field>-->
+<!--        <field name="standard_price">0.0</field>-->
+<!--        <field name="list_price">0.0</field>-->
+<!--        <field name="type">service</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--        <field name="uom_id" ref="uom.product_uom_unit"/>-->
+<!--        <field name="uom_po_id" ref="uom.product_uom_unit"/>-->
+<!--    </record>-->
+
+<!--    <record id="product_template_colour" model="product.template">-->
+<!--        <field name="name">Colour</field>-->
+<!--        <field name="standard_price">0.0</field>-->
+<!--        <field name="list_price">0.0</field>-->
+<!--        <field name="type">service</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--        <field name="uom_id" ref="uom.product_uom_unit"/>-->
+<!--        <field name="uom_po_id" ref="uom.product_uom_unit"/>-->
+<!--    </record>-->
+</odoo>

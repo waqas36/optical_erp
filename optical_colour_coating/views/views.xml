@@ -1,0 +1,28 @@
+<odoo>
+<!--    <data>-->
+
+<!--        <record id="action_color_section_value" model="ir.actions.act_window">-->
+<!--             <field name="name">Color Section Value</field>-->
+<!--             <field name="res_model">section.value</field>-->
+<!--             <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--         <record id="action_color_section_name" model="ir.actions.act_window">-->
+<!--             <field name="name">Color Section Name</field>-->
+<!--             <field name="res_model">section.name</field>-->
+<!--             <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--         <record id="action_sub_coating" model="ir.actions.act_window">-->
+<!--             <field name="name">Lens Coating</field>-->
+<!--             <field name="type">ir.actions.act_window</field>-->
+<!--             <field name="res_model">sub.coating</field>-->
+<!--             <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+
+<!--        <menuitem name="Optics Config" id="optics_main_config" parent="website.menu_website_global_configuration"/>-->
+<!--        <menuitem name="Lens Section" id="optics_lens_section" parent="optics_main_config" action="action_color_section_name"/>-->
+<!--        <menuitem name="Lens Value" id="optics_lens_value" parent="optics_main_config" action="action_color_section_value"/>-->
+<!--        <menuitem name="Coating Section" id="optics_coating_section" parent="optics_main_config" action="action_sub_coating"/>-->
+
+
+<!--    </data>-->
+</odoo>

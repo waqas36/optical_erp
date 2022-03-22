@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="optometrist_product_configurator">
+        <field name="name">optometrist.product.configurator</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page name="optometrist_product_configurator" string="Optometrist Product Configurator">
+                    <group>
+<!--                        <field name="product_code"/>-->
+                        <field name="edi_code"/>
+                        <field name="is_single_lens_sellable"/>
+                        <field name="individual_parameter_configurable"/>
+                    </group>
+                    <notebook string="Optometrist Product Configurator">
+                        <page name="opc_material_properties" string="Material Properties" autofocus="autofocus">
+                            <group>
+                                <group>
+                                    <field name="lens_code"/>
+                                    <field name="ne"/>
+                                    <field name="ve"/>
+                                    <field name="pgcm3"/>
+                                    <field name="uvcut"/>
+                                    <field name="absorption"/>
+                                </group>
+                                <group></group>
+                            </group>
+                        </page>
+                        <page name="opc_prescription_configuration" string="Prescription Configuration"
+                              autofocus="autofocus">
+                            <group>
+                                <group colspan="4">
+                                    <field name="is_customisable"/>
+                                    <field name="dioptre_option_ids" widget="many2many_tags"
+                                           attrs="{'invisible': [('is_customisable', '=', False)]}"/>
+
+                                </group>
+
+
+                                <group>
+                                    <field name="can_configure_prism"/>
+                                </group>
+                                <group></group>
+                                <group string="Prism 1" attrs="{'invisible': [('can_configure_prism', '=', False)]}">
+                                    <field name="prism1_range_min" string="Min"/>
+                                    <field name="prism1_range_max" string="Max"/>
+                                </group>
+                                <group string="Prism 2" attrs="{'invisible': [('can_configure_prism', '=', False)]}">
+                                    <field name="prism2_range_min" string="Min"/>
+                                    <field name="prism2_range_max" string="Max"/>
+                                </group>
+                                <group string="Base 1" attrs="{'invisible': [('can_configure_prism', '=', False)]}">
+                                    <field name="base1_range_min" string="Min"/>
+                                    <field name="base1_range_max" string="Max"/>
+                                </group>
+                                <group string="Base 2" attrs="{'invisible': [('can_configure_prism', '=', False)]}">
+                                    <field name="base2_range_min" string="Min"/>
+                                    <field name="base2_range_max" string="Max"/>
+                                </group>
+                                <group string="Spherometer Base Curve"
+                                       attrs="{'invisible': [('can_configure_prism', '=', False)]}">
+                                    <field name="spherometer_dpt_min" string="Min"/>
+                                    <field name="spherometer_dpt_std"/>
+                                    <field name="spherometer_dpt_max" string="Max"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="opc_parameter_configuration" string="Indiv. Parameters Configuration"
+                              autofocus="autofocus"
+                              attrs="{'invisible': [('individual_parameter_configurable', '=', False)]}">
+                            <group>
+                                <group>
+                                    <field name="is_lpd"/>
+                                </group>
+                                <group string="Left Pupil Distance (PD)"
+                                       attrs="{'invisible': [('is_lpd', '=', False)]}">
+                                    <field name="lpd_min" string="Min"/>
+                                    <field name="lpd_max" string="Max"/>
+                                    <field name="lpd_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_rpd"/>
+                                </group>
+                                <group string="Right Pupil Distance (PD)"
+                                       attrs="{'invisible': [('is_rpd', '=', False)]}">
+                                    <field name="rpd_min" string="Min"/>
+                                    <field name="rpd_max" string="Max"/>
+                                    <field name="rpd_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_bvd"/>
+                                </group>
+                                <group string="Back Vertex Distance (BVD)"
+                                       attrs="{'invisible': [('is_bvd', '=', False)]}">
+                                    <field name="bvd_min" string="Min"/>
+                                    <field name="bvd_max" string="Max"/>
+                                    <field name="bvd_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_pant_a"/>
+                                </group>
+                                <group string="Pantoscopic angle (PantA)"
+                                       attrs="{'invisible': [('is_pant_a', '=', False)]}">
+                                    <field name="panta_min" string="Min"/>
+                                    <field name="panta_max" string="Max"/>
+                                    <field name="panta_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_ba"/>
+                                </group>
+                                <group string="Bow angle (BA)"
+                                       attrs="{'invisible': [('is_ba', '=', False)]}">
+                                    <field name="ba_min" string="Min"/>
+                                    <field name="ba_max" string="Max"/>
+                                    <field name="ba_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_nod"/>
+                                </group>
+                                <group string="Near object distance (NOD)"
+                                       attrs="{'invisible': [('is_nod', '=', False)]}">
+                                    <field name="nod_min" string="Min"/>
+                                    <field name="nod_max" string="Max"/>
+                                    <field name="nod_std"/>
+                                </group>
+                                <group>
+                                    <field name="is_progression_length"/>
+                                </group>
+                                <group string="Progression length (Fitting height)"
+                                       attrs="{'invisible': [('is_progression_length', '=', False)]}">
+                                    <field name="progression_length_ids" widget="many2many_tags"/>
+                                </group>
+                                <group>
+                                    <field name="is_inset"/>
+                                </group>
+                                <group>
+                                    <field name="is_dpt_two"/>
+                                </group>
+                                <group>
+                                    <field name="is_cod"/>
+                                </group>
+                                <group>
+                                    <field name="is_rlf"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page name="diameter_options" string="Product Diameter Lines" autofocus="autofocus">
+                            <field name="diameter_option_ids" widget="one2many">
+                                <tree string="Diameter Lines" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="sphere_range_min"/>
+                                    <field name="sphere_range_max"/>
+                                    <field name="cylinder_range_min"/>
+                                    <field name="cylinder_range_max"/>
+                                    <field name="additional_range_min"/>
+                                    <field name="additional_range_max"/>
+                                    <field name="prism_range_min"/>
+                                    <field name="prism_range_max"/>
+
+                                </tree>
+
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+
+<!--            <xpath expr="//page[@name='purchase']" position="after">-->
+<!--                <page name="Lens description" string="Lens description">-->
+<!--                    <group>-->
+<!--                        <field name="edi_code"/>-->
+<!--                        <field name="product_name"/>-->
+<!--                        <field name="parmadur"/>-->
+<!--                        <field name="lens_catagory"/>-->
+<!--                        <field name="puchase_price"/>-->
+<!--                        <field name="sale_price"/>-->
+<!--                        <field name="lens_catagory_id"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+
+        </field>
+
+    </record>
+
+</odoo>

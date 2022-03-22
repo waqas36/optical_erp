@@ -1,0 +1,66 @@
+<odoo>
+    <record id="user_request_form_view" model="ir.ui.view">
+        <field name="name">user.request.view.form</field>
+        <field name="model">user.request</field>
+        <field name="arch" type="xml">
+
+            <form string="User Request">
+                <header>
+<!--                    <button name="set_recruit" string="Start Recruitment" states="open" type="object" class="oe_highlight" groups="base.group_user"/>-->
+<!--                    <button name="set_open" string="Stop Recruitment" states="recruit" type="object" groups="base.group_user"/>-->
+                    <button name="accept_user_request" string="Accept" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="reject_user_request" string="Reject" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="accept,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="company"/>
+                            <field name="street"/>
+                            <field name="pricelist"/>
+                        </group>
+                        <group>
+
+                            <field name="city"/>
+                            <field name="zip_code"/>
+                            <field name="country"/>
+                            <field name="vat_number"/>
+                            <field name="phone"/>
+                            <field name="password" invisible="1"/>
+
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="user_request_tree_view" model="ir.ui.view">
+        <field name="name">diameter.view.list</field>
+        <field name="model">user.request</field>
+        <field name="arch" type="xml">
+            <tree string="Product Diameter">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="country"/>
+                <field name="state" invisible="1"/>
+                <field name="password" invisible="1"/>
+                <button name="accept_user_request" string="Accept" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                <button name="reject_user_request" string="Reject" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="user_request_action" model="ir.actions.act_window">
+        <field name="name">User Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">user.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Users Request" id="user_request_menu_id" parent="contacts.menu_contacts" action="op_optical.user_request_action"/>
+</odoo>

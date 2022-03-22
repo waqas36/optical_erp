@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_optometrist_product_color,optometrist.product.color,model_optometrist_product_color,base.group_user,1,1,1,1
+access_optometrist_product_coating,optometrist.product.coating,model_optometrist_product_coating,base.group_user,1,1,1,1
+access_optometrist_product_dioptre,optometrist.product.dioptre,model_optometrist_product_dioptre,base.group_user,1,1,1,1
+access_optometrist_product_diameter,optometrist.product.diameter,model_optometrist_product_diameter,base.group_user,1,1,1,1
+access_optometrist_product_diameter_public,optometrist.product.diameter,model_optometrist_product_diameter,base.group_public,1,1,1,1
+access_optometrist_product_diameter_public,optometrist.product.diameter,model_optometrist_product_diameter,base.group_portal,1,1,1,1
+access_optometrist_product_progression_length,optometrist.product.progression_length,model_optometrist_product_progression_length,,1,1,1,1
+access_sale_order_line,optometrist.sale.order.line,model_sale_order_line,base.group_portal,1,1,1,1
+access_user_request,user.request,model_user_request,,1,1,1,1
+access_product_template,product.template,model_product_template,base.group_portal,1,1,1,1
+
+

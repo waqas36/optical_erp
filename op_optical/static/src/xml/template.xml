@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <t t-name="color">
+        <t t-foreach="color_data" t-as="color">
+            <t t-if="color.id ==2346">
+                <tr>
+                    <th>Filter</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="dt_row">
+                            <div>
+                                <label class="rad-label">
+                                    <input type="checkbox" class="rad-input" id="uv_filter_radio" name="uv_filter"/>
+                                    <div class="rad-design uv_filter_radio" t-att-id="color.id"></div>
+                                    <div class="rad-text">
+                                        <t t-esc="color.name"/>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <!--                    <div class="row-dt color-data" style="display:none;" t-att-id="color.id">-->
+                        <!--                        <div class="color_div">-->
+                        <!--                            <select class="selected_color">-->
+                        <!--                                <t t-foreach="color.color_list" t-as="c_list">-->
+                        <!--                                    <option class="color_option" t-att-id="c_list.id">-->
+                        <!--                                        <t t-esc="c_list.name"/>-->
+                        <!--                                    </option>-->
+                        <!--                                </t>-->
+                        <!--                            </select>-->
+                        <!--                            <div>-->
+                        <!--                                <t t-foreach="color.color_list" t-as="c_list">-->
+                        <!--                                    <img t-if="c_list.image" t-att-src="'data:image/png;base64,' + c_list.image" class="color-img"-->
+                        <!--                                         t-att-id="c_list.id" style="display:none;"/>-->
+                        <!--                                </t>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div>-->
+                        <!--                            &lt;!&ndash;                            <img src="https://distributor.optiswiss.com/.file/color/O06.jpg"   loading="lazy"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                            <img t-if="color.image" t-att-src="color.image" style="max-height:45pt;max-width:90%"&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                 alt="Color Image"/>&ndash;&gt;-->
+                        <!--                            &lt;!&ndash;                            <span t-field="color.image" t-options='{"widget": "image"}'/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                            <img t-if="color.image" t-att-src="'data:image/png;base64,' + color.image"/>&ndash;&gt;-->
+                        <!--                            &lt;!&ndash;                            <img t-attf-src="image_data_uri(color.image.image_1920)" class="flex-shrink-0 o_image_64_contain"/>&ndash;&gt;-->
+                        <!--                            &lt;!&ndash;                            <div class='td-img'>&ndash;&gt;-->
+                        <!--                            &lt;!&ndash;                                <span t-field="color.image.image_1920" t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}" />&ndash;&gt;-->
+                        <!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+                    </td>
+                    <td class="color_price" id="uv_price" value="">
+                        <t t-esc="color.price"/>
+                        <t t-esc="color.currency_symbol"/>
+                    </td>
+                </tr>
+            </t>
+            <tr t-else="">
+                <td>
+                    <div class="dt_row">
+                        <div>
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" id="color_radio_button" name="color"/>
+                                <div class="rad-design product_color_radio" t-att-id="color.id"></div>
+                                <div class="rad-text">
+                                    <t t-esc="color.name"/>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row-dt color-data" style="display:none;" t-att-id="color.id">
+                        <div class="color_div">
+                            <select class="selected_color">
+                                <t t-foreach="color.color_list" t-as="c_list">
+                                    <option class="color_option" t-att-id="c_list.id">
+                                        <t t-esc="c_list.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                            <div>
+                                <t t-foreach="color.color_list" t-as="c_list">
+                                    <img t-if="c_list.image" t-att-src="'data:image/png;base64,' + c_list.image"
+                                         class="color-img"
+                                         t-att-id="c_list.id" style="display:none;"/>
+                                </t>
+                            </div>
+                        </div>
+                        <div>
+                            <!--                            <img src="https://distributor.optiswiss.com/.file/color/O06.jpg"   loading="lazy"/>-->
+                            <!--                            <img t-if="color.image" t-att-src="color.image" style="max-height:45pt;max-width:90%"-->
+                            <!--                                 alt="Color Image"/>-->
+                            <!--                            <span t-field="color.image" t-options='{"widget": "image"}'/>-->
+                            <!--                            <img t-if="color.image" t-att-src="'data:image/png;base64,' + color.image"/>-->
+                            <!--                            <img t-attf-src="image_data_uri(color.image.image_1920)" class="flex-shrink-0 o_image_64_contain"/>-->
+                            <!--                            <div class='td-img'>-->
+                            <!--                                <span t-field="color.image.image_1920" t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}" />-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                </td>
+                <td class="color_price">
+                    <t t-esc="color.price"/>
+                    <t t-esc="color.currency_symbol"/>
+                </td>
+            </tr>
+        </t>
+
+    </t>
+
+    <t t-name="coating">
+        <t t-foreach="coating_data" t-as="coating">
+            <tr t-if="coating.id ==	1479">
+                <td>
+                    <div class="dt_row">
+                        <div class="coating-inline">
+                            <label class="rad-label">
+<!--                                <input type="checkbox" class="rad-input" id="flash_mirror_coating" name="flash_mirror_coating"/>-->
+                                <input type="radio" class="rad-input" id="flash_mirror_coating" name="coating"/>
+                                <div class="rad-design product_coating_radio" t-att-id="coating.id"></div>
+                                <div class="rad-text flash_mirror_coating">
+                                    <t t-esc="coating.name"/>
+                                </div>
+
+                            </label>
+                            <span style="margin-bottom: -2px" t-att-id="coating.id"
+                                  class="span-svg span-icon-infoicon open-info"></span>
+                        </div>
+                    </div>
+                    <div class="row-dt coating_selection" style="display: none;">
+                        <div class="">
+
+                            <select class="flash_select">
+                                <t t-foreach="coating.coating_list" t-as="coat_list">
+                                    <option style="color:black;" t-att-id="coat_list.id" class="flash_option">
+                                        <t t-esc="coat_list.name"/>
+                                    </option>
+<!--                                    $(".selected-color").find('select').children(":selected").attr("id");-->
+                                </t>
+                            </select>
+                            <div>
+                                <t t-foreach="coating.coating_list" t-as="c_list">
+                                    <img t-if="c_list.image" t-att-src="'data:image/png;base64,' + c_list.image"
+                                         class="flash-img"
+                                         t-att-id="c_list.id" style="display:none;"/>
+                                </t>
+                            </div>
+                            <!--info Model End-->
+                            <!--                            <div class="modal fade" id="infoModel" tabindex="-1" role="dialog"-->
+                            <!--                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+                            <!--                                <div class="modal-dialog modal-dialog-centered" role="document">-->
+                            <!--                                    <div class="modal-content">-->
+                            <!--                                        <span class="close" data-dismiss="modal" aria-label="Close">-->
+                            <!--                                            <span aria-hidden="true">close</span>-->
+                            <!--                                        </span>-->
+
+                            <!--                                        <div class="modal-body">-->
+                            <!--                                            <h1>Gaadu bhai ....</h1>-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+
+                            <!--                            <select style="display:none;">-->
+                            <!--                                <t t-foreach="color.color_value" t-as="c">-->
+                            <!--                                    <option>-->
+                            <!--                                        <t t-esc="c.value"/>-->
+                            <!--                                    </option>-->
+                            <!--                                </t>-->
+                            <!--                            </select>-->
+                        </div>
+                    </div>
+                </td>
+                <td t-att-id="coating.id" class="flash_mirror_coating_price">
+                    <t t-esc="coating.price"/>
+                    <t t-esc="coating.currency_symbol"/>
+                    /pc
+                </td>
+            </tr>
+            <tr t-else="">
+                <td>
+                    <div class="dt_row">
+                        <div class="coating-inline">
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="coating"/>
+                                <div class="rad-design product_coating_radio" t-att-id="coating.id"></div>
+                                <div class="rad-text coating_name" t-att-id="coating.id">
+                                    <t t-esc="coating.name"/>
+                                </div>
+
+                            </label>
+                            <span style="margin-bottom: -2px" t-att-id="coating.id"
+                                  class="span-svg span-icon-infoicon open-info"></span>
+                        </div>
+                    </div>
+                    <!--                    <div class="row-dt coating-data" style="display:none;">-->
+                    <!--                        <div class="">-->
+
+                    <!--                            <select>-->
+                    <!--                                <t t-foreach="coating[1]" t-as="dict_data">-->
+                    <!--                                    <option>-->
+                    <!--                                        <t t-esc="dict_data['name']"/>-->
+                    <!--                                    </option>-->
+                    <!--                                </t>-->
+                    <!--                            </select>-->
+                    <!--                            &lt;!&ndash;info Model End&ndash;&gt;-->
+                    <!--                            <div class="modal fade" id="infoModel" tabindex="-1" role="dialog"-->
+                    <!--                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+                    <!--                                <div class="modal-dialog modal-dialog-centered" role="document">-->
+                    <!--                                    <div class="modal-content">-->
+                    <!--                                        <span class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--                                            <span aria-hidden="true">close</span>-->
+                    <!--                                        </span>-->
+
+                    <!--                                        <div class="modal-body">-->
+                    <!--                                            <h1>Gaadu bhai ....</h1>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+
+                    <!--                            &lt;!&ndash;                            <select style="display:none;">&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                <t t-foreach="color.color_value" t-as="c">&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                    <option>&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                        <t t-esc="c.value"/>&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                    </option>&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                </t>&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                            </select>&ndash;&gt;-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </td>
+                <td t-att-id="coating.id" class="coating_price">
+                    <t t-esc="coating.price"/>
+                    <t t-esc="coating.currency_symbol"/>
+                    /pc
+                </td>
+            </tr>
+        </t>
+    </t>
+
+</templates>

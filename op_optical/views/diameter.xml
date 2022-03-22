@@ -1,0 +1,72 @@
+<odoo>
+
+
+    <record id="diameter_view_form" model="ir.ui.view">
+        <field name="name">diameter.view.form</field>
+        <field name="model">optometrist.product.diameter</field>
+        <field name="arch" type="xml">
+
+            <form string="Product Diameter">
+                <sheet>
+
+                    <group>
+                        <group name="left_main_group">
+
+                            <field name="name"/>
+                            <field name="lens_code"/>
+
+                            <field name="sphere_range_min"/>
+                            <field name="sphere_range_max"/>
+                            <field name="cylinder_range_min"/>
+                            <field name="cylinder_range_max"/>
+
+                        </group>
+                        <group name="right_main_group">
+
+                            <field name="additional_range_min"/>
+                            <field name="additional_range_max"/>
+                            <field name="prism_range_min"/>
+                            <field name="prism_range_max"/>
+                            <field name="product_id"/>
+
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="diameter_view_list" model="ir.ui.view">
+        <field name="name">diameter.view.list</field>
+        <field name="model">optometrist.product.diameter</field>
+        <field name="arch" type="xml">
+            <tree string="Product Diameter">
+                <field name="name"/>
+
+                <field name="lens_code"/>
+                <field name="sphere_range_min"/>
+                <field name="sphere_range_max"/>
+                <field name="cylinder_range_min"/>
+                <field name="cylinder_range_max"/>
+                <field name="additional_range_min"/>
+                <field name="additional_range_max"/>
+                <field name="prism_range_min"/>
+                <field name="prism_range_max"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="optiswiss_diameter_action" model="ir.actions.act_window">
+        <field name="name">Product Diameter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">optometrist.product.diameter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Product Diameter" id="optiswiss_diameter_menu" parent="sale.sale_menu_root"/>
+    <menuitem name="Product Diameter" id="optiswiss_diameter_menu_2" parent="op_optical.optiswiss_diameter_menu" action="op_optical.optiswiss_diameter_action"/>
+
+</odoo>

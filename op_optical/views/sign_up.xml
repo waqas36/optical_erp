@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inherit_sign_form_id" inherit_id="auth_signup.signup">
+        <xpath expr="//form" position="replace">
+            <form class="oe_signup_form" role="form" method="post" t-if="not message">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                <t t-call="op_optical.signup_fields_template">
+                    <t t-set="only_passwords" t-value="bool(token and not invalid_token)"/>
+                </t>
+
+                <p class="alert alert-danger" t-if="error" role="alert">
+                    <t t-esc="error"/>
+                </p>
+                <input type="hidden" name="redirect" t-att-value="redirect"/>
+                <input type="hidden" name="token" t-att-value="token"/>
+                <div class="text-center oe_login_buttons pt-3">
+                    <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                    <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link btn-sm" role="button">Already
+                        have an account?
+                    </a>
+                    <div class="o_login_auth"/>
+                </div>
+            </form>
+        </xpath>
+    </template>
+    <template id="signup_fields_template">
+        <div class="row">
+            <div class="col-6">
+                <label for="company_name"><span style="color:red;">*</span>Business Name
+                </label>
+                <input type="text" name="company_name" t-att-value="company_name" id="company_name"
+                       class="form-control form-control-sm" placeholder="Your Company Name" required="required"/>
+            </div>
+            <div class="col-6">
+                <label for="name"><span style="color:red;">*</span>Your Name
+                </label>
+                <input type="text" name="name" t-att-value="name" id="name" class="form-control form-control-sm"
+                       placeholder="e.g. John Doe" required="required"
+                       t-att-readonly="'readonly' if only_passwords else None"
+                       t-att-autofocus="'autofocus' if login and not only_passwords else None"/>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-6">
+                <label for="street"><span style="color:red;">*</span>Street
+                </label>
+                <input type="text" name="street" t-att-value="street" id="street"
+                       class="form-control form-control-sm"
+                       required="required"/>
+            </div>
+            <div class="col-6">
+                <label for="login"><span style="color:red;">*</span>Your Email
+                </label>
+                <input type="text" name="login" t-att-value="login" id="login" class="form-control form-control-sm"
+                       autofocus="autofocus" autocapitalize="off" required="required"
+                       t-att-readonly="'readonly' if only_passwords else None"/>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-4">
+                <label for="city"><span style="color:red;">*</span>City
+                </label>
+                <input type="text" name="city" t-att-value="city" id="city" class="form-control form-control-sm"
+                       required="required"/>
+            </div>
+            <div class="col-4">
+                <div class="form-group field-zip">
+                    <label for="zip_code">Zip / Postal Code
+                    </label>
+                    <input type="text" name="zip_code" t-att-value="zip_code" id="zip_code"
+                           class="form-control form-control-sm"/>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="phone"><span style="color:red;">*</span>Phone
+                </label>
+                <input type="text" name="phone" t-att-value="phone" id="phone" class="form-control form-control-sm"
+                       required="required"/>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-6">
+                <label for="country_id"><span style="color:red;">*</span>Country
+                </label>
+                <select name="country_id">
+<!--                    <option value="">Country...</option>-->
+                    <t t-foreach="countries or []" t-as="country">
+                        <option t-att-value="country.id"
+                                t-att-selected="country.id">
+                            <t t-esc="country.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="col-6">
+                <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>
+                <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>
+                <label for="price_list"><span style="color:red;">*</span>Price List Currency
+                </label>
+                <select name="pricelist">
+                    <t t-foreach="website_sale_pricelists" t-as="pl">
+                        <option t-att-data-pl_id="pl.id" t-esc="pl.name">
+                        </option>
+                    </t>
+                </select>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-6">
+                <label for="vat_number">VAT Number | Business ID</label>
+                <input type="text" name="vat_number" t-att-value="vat_number" id="vat_number"
+                       class="form-control form-control-sm" placeholder="VAT Number"/>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-6">
+                <label for="password"><span style="color:red;">*</span>Password
+                </label>
+                <input type="password" name="password" id="password" class="form-control form-control-sm"
+                       required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>
+            </div>
+            <div class="col-6">
+                <label for="confirm_password"><span style="color:red;">*</span>Confirm Password
+                </label>
+                <input type="password" name="confirm_password" id="confirm_password"
+                       class="form-control form-control-sm" required="required"/>
+            </div>
+        </div>
+        <br/>
+        <!--        <div class="form-group field-company-name">-->
+        <!--            <label for="company_name"><span style="color:red;">*</span>Business Name-->
+        <!--            </label>-->
+        <!--            <input type="text" name="company_name" t-att-value="company_name" id="company_name"-->
+        <!--                   class="form-control form-control-sm" placeholder="Your Company Name" required="required"/>-->
+        <!--        </div>-->
+        <!--        <div class="form-group field-name">-->
+        <!--            <label for="name"><span style="color:red;">*</span>Your Name-->
+        <!--            </label>-->
+        <!--            <input type="text" name="name" t-att-value="name" id="name" class="form-control form-control-sm"-->
+        <!--                   placeholder="e.g. John Doe" required="required"-->
+        <!--                   t-att-readonly="'readonly' if only_passwords else None"-->
+        <!--                   t-att-autofocus="'autofocus' if login and not only_passwords else None"/>-->
+        <!--        </div>-->
+
+        <!--        <div class="form-group field-street">-->
+        <!--            <label for="street"><span style="color:red;">*</span>Street-->
+        <!--            </label>-->
+        <!--            <input type="text" name="street" t-att-value="street" id="street"-->
+        <!--                   class="form-control form-control-sm"-->
+        <!--                   required="required"/>-->
+        <!--        </div>-->
+        <!--        <div class="form-group field-login">-->
+        <!--            <label for="login"><span style="color:red;">*</span>Your Email-->
+        <!--            </label>-->
+        <!--            <input type="text" name="login" t-att-value="login" id="login" class="form-control form-control-sm"-->
+        <!--                   autofocus="autofocus" autocapitalize="off" required="required"-->
+        <!--                   t-att-readonly="'readonly' if only_passwords else None"/>-->
+        <!--        </div>-->
+
+
+        <!--        <div class="form-group field-city">-->
+        <!--            <label for="city"><span style="color:red;">*</span>City-->
+        <!--            </label>-->
+        <!--            <input type="text" name="city" t-att-value="city" id="city" class="form-control form-control-sm"-->
+        <!--                   required="required"/>-->
+        <!--        </div>-->
+        <!--        <div class="form-group field-zip">-->
+        <!--            <label for="zip_code"><span style="color:red;">*</span>Zip / Postal Code-->
+        <!--            </label>-->
+        <!--            <input type="text" name="zip_code" t-att-value="zip_code" id="zip_code"-->
+        <!--                   class="form-control form-control-sm" required="required"/>-->
+        <!--        </div>-->
+        <!--        <div class="form-group field-phone">-->
+        <!--            <label for="phone"><span style="color:red;">*</span>Phone-->
+        <!--            </label>-->
+        <!--            <input type="text" name="phone" t-att-value="phone" id="phone" class="form-control form-control-sm"-->
+        <!--                   required="required"/>-->
+        <!--        </div>-->
+
+        <!--        <div t-attf-class="form-group">-->
+        <!--            <label class="col-form-label" for="country_id"><span style="color:red;">*</span>Country-->
+        <!--            </label>-->
+        <!--            <select name="country_id">-->
+        <!--                <option value="">Country...</option>-->
+        <!--                <t t-foreach="countries or []" t-as="country">-->
+        <!--                    <option t-att-value="country.id"-->
+        <!--                            t-att-selected="country.id">-->
+        <!--                        <t t-esc="country.name"/>-->
+        <!--                    </option>-->
+        <!--                </t>-->
+        <!--            </select>-->
+        <!--        </div>-->
+        <!--        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>-->
+        <!--        <div t-attf-class="dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} #{_classes}">-->
+        <!--            <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>-->
+        <!--            <label for="price_list"><span style="color:red;">*</span>Price List Currency-->
+        <!--            </label>-->
+        <!--            <select name="pricelist">-->
+        <!--                <t t-foreach="website_sale_pricelists" t-as="pl">-->
+        <!--                    <option t-att-data-pl_id="pl.id" t-esc="pl.name">-->
+        <!--                    </option>-->
+        <!--                </t>-->
+        <!--            </select>-->
+        <!--        </div>-->
+
+        <!--        <div class="form-group field-vat-number">-->
+        <!--            <label for="vat_number">VAT Number | Business ID</label>-->
+        <!--            <input type="text" name="vat_number" t-att-value="vat_number" id="vat_number"-->
+        <!--                   class="form-control form-control-sm" placeholder="VAT Number" required="required"/>-->
+        <!--        </div>-->
+
+        <!--        <div class="form-group field-password pt-2">-->
+        <!--            <label for="password"><span style="color:red;">*</span>Password-->
+        <!--            </label>-->
+        <!--            <input type="password" name="password" id="password" class="form-control form-control-sm"-->
+        <!--                   required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>-->
+        <!--        </div>-->
+<!--        <div class="form-group field-confirm_password">-->
+<!--            <label for="confirm_password"><span style="color:red;">*</span>Confirm Password-->
+<!--            </label>-->
+<!--            <input type="password" name="confirm_password" id="confirm_password"-->
+<!--                   class="form-control form-control-sm" required="required"/>-->
+<!--        </div>-->
+    </template>
+<!--    <template id="inherit_sign_up_form" inherit_id="auth_signup.fields">-->
+<!--        &lt;!&ndash;        <xpath expr="" position="replace">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </xpath>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <xpath expr="//div[hasclass('field-login')]" position="replace">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </xpath>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <xpath expr="//div[hasclass('field-name')]" position="replace">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </xpath>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <xpath expr="//div[hasclass('field-password pt-2')]" position="replace">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </xpath>&ndash;&gt;-->
+<!--        <xpath expr="//div[hasclass('field-confirm_password')]" position="replace">-->
+<!--            <div>-->
+<!--                <div class="form-group field-company-name">-->
+<!--                    <label for="company_name"><span style="color:red;">*</span>Business Name-->
+<!--                    </label>-->
+<!--                    <input type="text" name="company_name" t-att-value="company_name" id="company_name"-->
+<!--                           class="form-control form-control-sm" placeholder="Your Company Name" required="required"/>-->
+<!--                </div>-->
+<!--                <div class="form-group field-name">-->
+<!--                    <label for="name"><span style="color:red;">*</span>Your Name-->
+<!--                    </label>-->
+<!--                    <input type="text" name="name" t-att-value="name" id="name" class="form-control form-control-sm"-->
+<!--                           placeholder="e.g. John Doe" required="required"-->
+<!--                           t-att-readonly="'readonly' if only_passwords else None"-->
+<!--                           t-att-autofocus="'autofocus' if login and not only_passwords else None"/>-->
+<!--                </div>-->
+
+<!--                <div class="form-group field-street">-->
+<!--                    <label for="street"><span style="color:red;">*</span>Street-->
+<!--                    </label>-->
+<!--                    <input type="text" name="street" t-att-value="street" id="street"-->
+<!--                           class="form-control form-control-sm"-->
+<!--                           required="required"/>-->
+<!--                </div>-->
+<!--                <div class="form-group field-login">-->
+<!--                    <label for="login"><span style="color:red;">*</span>Your Email-->
+<!--                    </label>-->
+<!--                    <input type="text" name="login" t-att-value="login" id="login" class="form-control form-control-sm"-->
+<!--                           autofocus="autofocus" autocapitalize="off" required="required"-->
+<!--                           t-att-readonly="'readonly' if only_passwords else None"/>-->
+<!--                </div>-->
+
+
+<!--                <div class="form-group field-city">-->
+<!--                    <label for="city"><span style="color:red;">*</span>City-->
+<!--                    </label>-->
+<!--                    <input type="text" name="city" t-att-value="city" id="city" class="form-control form-control-sm"-->
+<!--                           required="required"/>-->
+<!--                </div>-->
+<!--                <div class="form-group field-zip">-->
+<!--                    <label for="zip_code"><span style="color:red;">*</span>Zip / Postal Code-->
+<!--                    </label>-->
+<!--                    <input type="text" name="zip_code" t-att-value="zip_code" id="zip_code"-->
+<!--                           class="form-control form-control-sm" required="required"/>-->
+<!--                </div>-->
+<!--                <div class="form-group field-phone">-->
+<!--                    <label for="phone"><span style="color:red;">*</span>Phone-->
+<!--                    </label>-->
+<!--                    <input type="text" name="phone" t-att-value="phone" id="phone" class="form-control form-control-sm"-->
+<!--                           required="required"/>-->
+<!--                </div>-->
+
+<!--                <div t-attf-class="form-group">-->
+<!--                    <label class="col-form-label" for="country_id"><span style="color:red;">*</span>Country-->
+<!--                    </label>-->
+<!--                    <select name="country_id">-->
+<!--                        <option value="">Country...</option>-->
+<!--                        <t t-foreach="countries or []" t-as="country">-->
+<!--                            <option t-att-value="country.id"-->
+<!--                                    t-att-selected="country.id">-->
+<!--                                <t t-esc="country.name"/>-->
+<!--                            </option>-->
+<!--                        </t>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>-->
+<!--                <div t-attf-class="dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} #{_classes}">-->
+<!--                    <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>-->
+<!--                    <label for="price_list"><span style="color:red;">*</span>Price List Currency-->
+<!--                    </label>-->
+<!--                    <select name="pricelist">-->
+<!--                        <t t-foreach="website_sale_pricelists" t-as="pl">-->
+<!--                            <option t-att-data-pl_id="pl.id" t-esc="pl.name">-->
+<!--                            </option>-->
+<!--                        </t>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                <div class="form-group field-vat-number">-->
+<!--                    <label for="vat_number">VAT Number | Business ID</label>-->
+<!--                    <input type="text" name="vat_number" t-att-value="vat_number" id="vat_number"-->
+<!--                           class="form-control form-control-sm" placeholder="VAT Number" required="required"/>-->
+<!--                </div>-->
+
+<!--                <div class="form-group field-password pt-2">-->
+<!--                    <label for="password"><span style="color:red;">*</span>Password-->
+<!--                    </label>-->
+<!--                    <input type="password" name="password" id="password" class="form-control form-control-sm"-->
+<!--                           required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>-->
+<!--                </div>-->
+<!--                <div class="form-group field-confirm_password">-->
+<!--                    <label for="confirm_password"><span style="color:red;">*</span>Confirm Password-->
+<!--                    </label>-->
+<!--                    <input type="password" name="confirm_password" id="confirm_password"-->
+<!--                           class="form-control form-control-sm" required="required"/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

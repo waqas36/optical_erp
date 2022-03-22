@@ -1,0 +1,2287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend" inherit_id="website_sale.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <!-- <script type="text/javascript" src="/op_optical/static/src/js/optical.js"></script> -->
+            <script type="text/javascript" src="/op_optical/static/src/js/shop.js"></script>
+        </xpath>
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/op_optical/static/src/css/style.css"/>
+        </xpath>
+    </template>
+<!--    <template id="assets_backend" name="doc assets" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"/>-->
+<!--            <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
+<!--            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>-->
+<!--            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--        </xpath>-->
+<!--    </template>-->
+    <template id="product_configurator" name="Config">
+        <t t-call="website.layout">
+
+            <t t-set="additional_title">Prescription configurator for</t>
+            <div id="wrap" class="js_sale">
+                <div class="oe_structure oe_empty" id="sdfsdf"/>
+                <div class="container oe_presecription_form pt-3" t-att-data-line_id="so_line.id">
+                    <section class="container">
+                        <h1>Prescription</h1>
+                        <!-- <t t-esc="pt.id"/>
+                        <t t-esc="pr.website_url"/>
+                        <t t-esc="o.id"/>
+                        <t t-raw="so_lines"/>
+                        <t t-raw="so_line"/>
+                        <t t-raw="so_line.id"/> -->
+                        <!--                        <main class="main-content" id="prescription_page">-->
+                        <!--                            <div class="row">-->
+                        <!--                                <div class="col-md-6">-->
+                        <!--                                    <label class="section_title">Please Choose1111111 Lens Side(s)</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" name="lens_side" value="both" checked="checked"/>-->
+                        <!--                                        <span>Both</span>-->
+                        <!--                                    </label>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" name="lens_side" value="left"/>-->
+                        <!--                                        <span>Left</span>-->
+                        <!--                                    </label>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" name="lens_side" value="right"/>-->
+                        <!--                                        <span>Right</span>-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-6">-->
+                        <!--                                    <label class="section_title">Cylinder Prefix</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" class="cylinder_prifix_vales" name="cylinder_prefix"-->
+                        <!--                                               value="+"-->
+                        <!--                                               checked="checked"/>-->
+                        <!--                                        <span>+</span>-->
+                        <!--                                    </label>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" class="cylinder_prifix_vales" name="cylinder_prefix"-->
+                        <!--                                               value="-"/>-->
+                        <!--                                        <span>-</span>-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+
+                        <!--                            <div class="row left_lens_side">-->
+                        <!--                                <div class="col-md-12">-->
+                        <!--                                    <label class="section_title">Left</label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Sphere</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_sphere" id="l_sphere"-->
+                        <!--                                           t-att-data-rmin="pt.sphere_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.sphere_range_max"/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <t t-esc="pt.sphere_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.sphere_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Cylinder</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_cylinder" id="l_cylinder"-->
+                        <!--                                           t-att-data-rmin="pt.cylinder_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.cylinder_range_max"/>-->
+                        <!--                                    <t t-esc="pt.cylinder_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.cylinder_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Axis</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_axis" id="l_axis" t-att-data-rmin="pt.axis_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.axis_range_max"/>-->
+                        <!--                                    <t t-esc="pt.axis_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.axis_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Addition</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_addition" id="l_addition"-->
+                        <!--                                           t-att-data-rmin="pt.additional_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.additional_range_max"/>-->
+                        <!--                                    <t t-esc="pt.additional_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.additional_range_max"/>-->
+
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <br/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="checkbox" name="l_prism" id="l_prism"/>-->
+                        <!--                                        <span>Prism</span>-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+
+
+                        <!--                                <div class="col-md-2 l_prism_attr">-->
+                        <!--                                    <label>Prism1</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_prism1" id="l_prism1"-->
+                        <!--                                           t-att-data-rmin="pt.prism1_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.prism1_range_max"/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <t t-esc="pt.prism1_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.prism1_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 l_prism_attr">-->
+                        <!--                                    <label>Prism2</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_prism2" id="l_prism2"-->
+                        <!--                                           t-att-data-rmin="pt.prism2_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.prism2_range_max"/>-->
+                        <!--                                    <t t-esc="pt.prism2_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.prism2_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 l_prism_attr">-->
+                        <!--                                    <label>Base1</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_base1" id="l_base1" t-att-data-rmin="pt.base1_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.base1_range_max"/>-->
+                        <!--                                    <t t-esc="pt.base1_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.base1_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 l_prism_attr">-->
+                        <!--                                    <label>Base2</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="l_base2" id="l_base2" t-att-data-rmin="pt.base2_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.base2_range_max"/>-->
+                        <!--                                    <t t-esc="pt.base2_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.base2_range_max"/>-->
+
+                        <!--                                </div>-->
+
+                        <!--                                <div t-if="pt.is_customisable" class="col-md-12">-->
+                        <!--                                    <label class="section_title">Diameter</label>-->
+                        <!--                                    <t t-foreach="pt.diameter_option_ids" t-as="d">-->
+                        <!--                                        <label>-->
+                        <!--                                            <input type="radio" name="left_lens_diameter" t-att-value="d.id"/>-->
+                        <!--                                            <span>-->
+                        <!--                                                <t t-esc="d.name"/>-->
+                        <!--                                            </span>-->
+                        <!--                                        </label>-->
+                        <!--                                    </t>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" name="left_lens_diameter" value="0"/>-->
+                        <!--                                        Form-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+
+                        <!--                            <div class="row right_lens_side">-->
+                        <!--                                <div class="col-md-12">-->
+                        <!--                                    <label class="section_title">Right</label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Sphere</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_sphere" id="r_sphere"-->
+                        <!--                                           t-att-data-rmin="pt.sphere_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.sphere_range_max"/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <t t-esc="pt.sphere_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.sphere_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Cylinder</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_cylinder" id="r_cylinder"-->
+                        <!--                                           t-att-data-rmin="pt.cylinder_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.cylinder_range_max"/>-->
+                        <!--                                    <t t-esc="pt.cylinder_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.cylinder_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Axis</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_axis" id="r_axis" t-att-data-rmin="pt.axis_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.axis_range_max"/>-->
+                        <!--                                    <t t-esc="pt.axis_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.axis_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <label>Addition</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_addition" id="r_addition"-->
+                        <!--                                           t-att-data-rmin="pt.additional_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.additional_range_max"/>-->
+                        <!--                                    <t t-esc="pt.additional_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.additional_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2">-->
+                        <!--                                    <br/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="checkbox" name="r_prism" id="r_prism"/>-->
+                        <!--                                        <span>Prism</span>-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 r_prism_attr">-->
+                        <!--                                    <label>Prism1</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_prism1" id="r_prism1"-->
+                        <!--                                           t-att-data-rmin="pt.prism1_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.prism1_range_max"/>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <t t-esc="pt.prism1_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.prism1_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 r_prism_attr">-->
+                        <!--                                    <label>Prism2</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_prism2" id="r_prism2"-->
+                        <!--                                           t-att-data-rmin="pt.prism2_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.prism2_range_max"/>-->
+                        <!--                                    <t t-esc="pt.prism2_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.prism2_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 r_prism_attr">-->
+                        <!--                                    <label>Base1</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_base1" id="r_base1" t-att-data-rmin="pt.base1_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.base1_range_max"/>-->
+                        <!--                                    <t t-esc="pt.base1_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.base1_range_max"/>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-2 r_prism_attr">-->
+                        <!--                                    <label>Base2</label>-->
+                        <!--                                    <br/>-->
+                        <!--                                    <input type="text" name="r_base2" id="r_base2" t-att-data-rmin="pt.base2_range_min"-->
+                        <!--                                           t-att-data-rmax="pt.base2_range_max"/>-->
+                        <!--                                    <t t-esc="pt.base2_range_min"/>-->
+                        <!--                                    <span>-</span>-->
+                        <!--                                    <t t-esc="pt.base2_range_max"/>-->
+
+                        <!--                                </div>-->
+
+                        <!--                                <div t-if="pt.is_customisable" class="col-md-12">-->
+                        <!--                                    <label class="section_title">Diameter</label>-->
+                        <!--                                    <t t-foreach="pt.diameter_option_ids" t-as="d">-->
+                        <!--                                        <label>-->
+                        <!--                                            <input type="radio" name="right_lens_diameter" t-att-value="d.id"/>-->
+                        <!--                                            <span>-->
+                        <!--                                                <t t-esc="d.name"/>-->
+                        <!--                                            </span>-->
+                        <!--                                        </label>-->
+
+                        <!--                                    </t>-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="radio" name="right_lens_diameter" value="0"/>-->
+                        <!--                                        Form-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </main>-->
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br/>
+                                <a href="#" id="save_prescription" role="button" class="btn btn-secondary">
+                                    Save Prescription
+                                </a>
+                                <a href="/shop/cart" role="button" class="btn btn-primary">
+                                    Continue to Cart
+                                    <span class="fa fa-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <br/>
+                            <br/>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="shop" name="shop">
+        <t t-call="website.layout">
+            <div id="wrap" class="lens_sale">
+                <div class="container oe_website_sale oe_lens_shop_form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Lens selection with prescription filter.
+                            </label>
+                            <!--                            <table>-->
+                            <!--                                <tr>-->
+                            <!--                                    <th></th>-->
+                            <!--                                    <th>Sphere</th>-->
+                            <!--                                    <th>Cylinder</th>-->
+                            <!--                                    <th>Axis</th>-->
+                            <!--                                    <th>Addition</th>-->
+                            <!--                                    <th>PD</th>-->
+                            <!--                                    <th>Height</th>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <th>-->
+                            <!--                                        <label>-->
+                            <!--                                            <input type="checkbox"/>-->
+                            <!--                                            <span>Right</span>-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement"-->
+                            <!--                                                        id="r_sphere_decr" value="-">↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="r_sphere" class="input-number right"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment"-->
+                            <!--                                                        id="r_sphere_incr" value="+">↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="r_cylinder" class="input-number right"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"-->
+                            <!--                                                       data-parse_float="true"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="r_axis" class="input-number right" data-min="0"-->
+                            <!--                                                       data-max="360" data-step="1"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td style="padding-right: 30px !important;">-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="r_addition" class="input-number right"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="r_pupil_distance" class="input-number right"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="progression_lenght" class="input-number right"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <th>-->
+                            <!--                                        <label>-->
+                            <!--                                            <input type="checkbox"/>-->
+                            <!--                                            <span>Left</span>-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement"-->
+                            <!--                                                        id="r_sphere_decr" value="-">↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_sphere" class="input-number left"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25" name="left"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment"-->
+                            <!--                                                        id="r_sphere_incr" value="+">↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_cylinder" class="input-number left"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_axis" class="input-number left" data-min="0"-->
+                            <!--                                                       data-max="360" data-step="1"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td style="padding-right: 30px !important;">-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_addition" class="input-number left"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_pupil_distance" class="input-number left"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="incr-decr-control-wrap">-->
+                            <!--                                            <div class="incr-decr-control">-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-decrement" value="-">-->
+                            <!--                                                    ↓-->
+                            <!--                                                </button>-->
+                            <!--                                                <input type="text" id="l_progression_length" class="input-number left"-->
+                            <!--                                                       data-min="-20" data-max="20" data-step="0.25"/>-->
+                            <!--                                                <button type="button" tabindex="-1" class="button-increment" value="+">-->
+                            <!--                                                    ↑-->
+                            <!--                                                </button>-->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td></td>-->
+                            <!--                                    <td></td>-->
+                            <!--                                    <td></td>-->
+                            <!--                                    <td>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <input type="reset" id="btn_reset" value="Cancel"/>-->
+                            <!--                                        <input type="button" id="btn_filter" value="Filter"/>-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+
+
+                            <!--                            </table>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav nav-pills flex-column mb-2">
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" t-att-data-id="0"
+                                       class="product_category list-group-item list-group-item-action all_categ">
+                                        All Categories
+                                    </a>
+                                </li>
+                                <t t-foreach="categories" t-as="c">
+                                    <t t-call="op_optical.categories_recursive2"/>
+                                </t>
+                            </ul>
+                        </div>
+                        <!--                        <div class="col-md-9 pics_categ">-->
+                        <!--                            <ul class="nav nav-pills flex-column mb-2">-->
+                        <!--                                <t t-foreach="categories" t-as="c">-->
+                        <!--                                    <t t-call="op_optical.categories_recursive3"/>-->
+                        <!--                                </t>-->
+                        <!--                            </ul>-->
+                        <!--                        </div>-->
+                        <div class="col-md-9 stores_grid_3 pics_categ">
+                            <t t-foreach="categories" t-as="c">
+                                <div class="box">
+                                    <t t-call="op_optical.categories_recursive3"/>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="col-md-9 all_products" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table" id="product_table"
+                                           style="background-color: white !important; color: black;">
+                                        <tr>
+                                            <th>Lens</th>
+                                            <th>EDI Code</th>
+                                            <!--                                            <th>Special Price</th>-->
+                                            <th>Price</th>
+                                            <th></th>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container oe_presecription_form pt-3" style="display:none;">
+                    <span id="product_price" style="display: none;"></span>
+                    <section class="container">
+                        <main id="prescription_page">
+                            <div class="container">
+                                <div class="row align-items-end">
+                                    <div class="col-lg-5">
+                                        <div class="title_with_icon">
+                                            <h2 class="product_name"></h2>
+                                            <span style="margin-bottom: -2px"
+                                                  class="span-svg span-icon-infoicon product_info_span"></span>
+                                            <div class="modal fade" id="product_info_modal" tabindex="-1"
+                                                 role="dialog"
+                                                 aria-labelledby="exampleModalCenterTitle"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered"
+                                                     role="document">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close"
+                                                                style="padding:10px;">
+                                                            <span id="modal_product_info"></span>
+                                                            <span style="float: right; padding-right:15px;">
+                                                                ×
+                                                            </span>
+                                                        </button>
+
+                                                        <div class="modal-body product_info_modal_desc"
+                                                             style="color: black !important;font-size: 24px;font-weight: 300;">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>
+                                            <span>Reference No.</span>
+                                            <span id="reference_number_text" style="display:none; color: red;">Required
+                                                Field
+                                            </span>
+                                            <input type="text" name="reference_number" id="reference_number"
+                                                   required="required"/>
+                                        </label>
+                                    </div>
+                                    <div css="col-lg-4">
+                                        <h4 id="pres_user_name"></h4>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="seperator"></div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label class="section_title">Please Choose Lens Side(s)</label>
+                                        <br/>
+                                        <div class="dt_row">
+
+                                            <ul class="selection_cls">
+                                                <li>
+                                                    <label class="check-container radio">
+                                                        <input type="radio" name="lens_side" value="both" onclick=""
+                                                               checked=""/>
+                                                        <span class="indicator"></span>
+
+                                                    </label>
+                                                    <span>Both</span>
+                                                </li>
+                                                <li>
+                                                    <label class="check-container radio">
+                                                        <input type="radio" name="lens_side" value="left"/>
+                                                        <span class="indicator"></span>
+                                                    </label>
+                                                    <span>Left</span>
+                                                </li>
+                                                <li>
+                                                    <label class="check-container radio">
+                                                        <input type="radio" name="lens_side" value="right"/>
+                                                        <span class="indicator"></span>
+                                                    </label>
+                                                    <span>Right</span>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="section_title">Cylinder Prefix</label>
+                                        <br/>
+                                        <ul class="selection_cls">
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="cylinder_prefix" value="+" onclick=""
+                                                           checked=""/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>+</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="cylinder_prefix" value="-"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>-</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="section_title">Dpt Precision</label>
+                                        <br/>
+
+                                        <ul class="selection_cls">
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="dpt" value="0.25" onclick=""
+                                                           checked=""/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>+0.25</span>
+                                            </li>
+                                            <li id="dpt_two" style="display:none;">
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="dpt" value="0.01"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>+0.01</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="#shop" class="next_div" id="back_button_shop">«
+                                            back
+                                            <span class="arrow highlight" style="font-size: 15px">«</span>
+                                        </a>
+                                        <span class="arrow highlight" style="font-size: 15px">|</span>
+                                        <a href="" class="next_div" id="nextbutton-prescription">continue
+                                            <span class="arrow highlight" style="font-size: 15px">»</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="seperator"></div>
+
+
+                            <!--                            <div class="row">-->
+                            <!--                                -->
+                            <!--                                <div class="col-md-3 section_side">-->
+
+
+                            <!--                                    &lt;!&ndash;                                    <input type="text" id="_product_id" style="display:none;"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    <div class="dt_row">&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <div>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            <label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <input type="radio" name="lens_side" value="both" checked="checked"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <span>Both</span>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            </label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            <label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <input type="radio" name="lens_side" value="left"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <span>Left</span>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            </label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            <label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <input type="radio" name="lens_side" value="right"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                                <span>Right</span>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                            </label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+                            <!--                                </div>-->
+                            <!--                                <div class="col-md-3 section_side">-->
+
+
+                            <!--                                </div>-->
+                            <!--                                <div class="col-md-3 section_side">-->
+                            <!--                                    <div class="heading clearfix">-->
+                            <!--                                        <div class="header-extra">-->
+                            <!--                                            <div class="inner_section1">-->
+                            <!--                                                -->
+                            <!--                                            </div>-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+
+
+                            <!--                                    &lt;!&ndash;                                    <label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <input type="radio" name="dpt" value="0.25" checked="checked"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <span>+0.25</span>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    </label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    <label>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <input type="radio" name="dpt" value="0.01"/>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                        <span>+0.01</span>&ndash;&gt;-->
+                            <!--                                    &lt;!&ndash;                                    </label>&ndash;&gt;-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <div class="row">
+                                <div class="col-md-3" style="background-color: white !important;">
+                                    <aside class="sidebar">
+                                        <nav class="navigation-stepper">
+                                            <ol>
+
+                                                <li class="pres">
+                                                    <a href="#priscription" class="page_shift">Prescription
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="ind" style="display:none;">
+                                                    <a href="#individual_page" class="page_shift">Indiv. parameter
+                                                    </a>
+                                                </li>
+                                                <li class="colo" style="display:none;">
+                                                    <a href="#color_page" class="page_shift">Colour
+                                                    </a>
+                                                </li>
+                                                <li class="coa" style="display:none;">
+                                                    <a href="#coating_page" class="page_shift">Coating
+                                                    </a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+
+                                    </aside>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="cod" style="display:none">
+                                        <label class="section_title">Consumer Oriented Design (COD) Choice of the
+                                            design
+                                        </label>
+                                        <ul class="selection_cls">
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="cod" value="near" id="cod_near"/>
+                                                    <span class="indicator"></span>
+
+                                                </label>
+                                                <span>near (N)</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="cod" value="balance" id="cod_balance"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>balance (B)</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="cod" value="far" id="cod_far"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>far (F)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="rlf" style="display:none;">
+                                        <label class="section_title">Relax Factor (RLF)</label>
+                                        <ul class="selection_cls">
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="rlf" value="0.37" id="rlf_one"/>
+                                                    <span class="indicator"></span>
+
+                                                </label>
+                                                <span>RLF A (0.37)</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="rlf" value="0.62" id="rlf_two"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>RLF B (0.62)</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="rlf" value="0.87" id="rlf_three"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>RLF C (0.87)</span>
+                                            </li>
+                                            <li>
+                                                <label class="check-container radio">
+                                                    <input type="radio" name="rlf" value="1.12" id="rlf_four"/>
+                                                    <span class="indicator"></span>
+                                                </label>
+                                                <span>RLF D (1.12)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="right_lens_side">
+                                        <h3 id="ranges_alert_right"></h3>
+                                        <label class="section_title">Right Diameter</label>
+                                        <table>
+                                            <tr>
+                                                <td colspan="5">
+
+                                                    <div id="right_lens_diameter_container">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Sphere</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement right"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_sphere"
+                                                                   class="input-number right"
+                                                                   data-step="0.25"
+                                                                   pattern="-?[0-9]*([,.]{1}[0-9]*)?"
+                                                                   required="required"
+                                                                   min="0"
+                                                            />
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment right"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Cylinder</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement right"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_cylinder"
+                                                                   class="input-number right"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment right"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text cylinder"></span>
+                                                        <span id="diameter_max_range_right"
+                                                              style="display: none;"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Axis</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    id="axis_button_decrement_right"
+                                                                    class="button-decrement right" value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_axis" min="0" max="180"
+                                                                   data-max="180" data-min="0"
+                                                                   class="input-number right" data-step="1"/>
+                                                            <button type="button" id="axis_button_increment_right"
+                                                                    tabindex="-1"
+                                                                    class="button-increment right" value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_axis">0<sup>o</sup> – +180
+                                                            <sup>o</sup>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td class="show_addition">
+                                                    <label>Addition</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement right"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_addition"
+                                                                   class="input-number right"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment right"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <br/>
+                                                    <label>
+                                                        <input type="checkbox" name="_pres_r_prism" id="_pres_r_prism"/>
+                                                        <span>Prism</span>
+                                                    </label>
+                                                </td>
+                                                <td style="padding-left: 12px;">
+                                                    <label>PD</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">
+                                                                ↓
+                                                            </button>
+                                                            <input type="text" id="r_pupil_distance"
+                                                                   class="input-number right"
+                                                                   data-min="-1000" data-max="1000" data-step=""/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">
+                                                                ↑
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Height</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">
+                                                                ↓
+                                                            </button>
+                                                            <input type="text" id="progression_lenght"
+                                                                   class="input-number right"
+                                                                   data-min="-1000" data-max="1000" data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">
+                                                                ↑
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="r_prism_attr">
+                                                <td>
+                                                    <label>Prism1</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_prism1"
+                                                                   class="input-number right"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Prism2</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_prism2"
+                                                                   class="input-number right"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Base1</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_base1"
+                                                                   class="input-number right"
+                                                                   data-step="1"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Base2</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_r_base2"
+                                                                   class="input-number right"
+                                                                   data-step="1"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="text-align:right;clear:both;margin-top: 35px;">
+                                        <button class="btn-left-right">Left = Right</button>
+                                    </div>
+                                    <div class="left_lens_side">
+                                        <h3 id="ranges_alert_left"></h3>
+
+                                        <div style="display:flex;align-items:center;justify-content:space-between">
+                                            <label class="section_title">Left Diameter</label>
+
+                                        </div>
+
+
+                                        <table>
+                                            <tr>
+                                                <td colspan="5">
+
+                                                    <div id="left_lens_diameter_container">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Sphere</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement left"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_sphere"
+                                                                   class="input-number left"
+                                                                   data-step="0.25" required="required"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment left"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Cylinder</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement left"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_cylinder"
+                                                                   class="input-number left"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment left"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text cylinder"></span>
+                                                        <span id="diameter_max_range_left"
+                                                              style="display: none;"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Axis</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    id="axis_button_decrement_left"
+                                                                    class="button-decrement left" value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_axis"
+                                                                   class="input-number left"
+                                                                   min="0" max="180"
+                                                                   data-step="1"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    id="axis_button_increment_left"
+                                                                    class="button-increment left" value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_axis">0<sup>o</sup> – +180
+                                                            <sup>o</sup>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td class="show_addition">
+                                                    <label>Addition</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-decrement left"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_addition"
+                                                                   class="input-number left"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1"
+                                                                    class="button-increment left"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <br/>
+                                                    <label>
+                                                        <input type="checkbox" name="_pres_l_prism" id="_pres_l_prism"/>
+                                                        <span>Prism</span>
+                                                    </label>
+                                                </td>
+                                                <td style="padding-left: 12px;">
+                                                    <label>PD</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">
+                                                                ↓
+                                                            </button>
+                                                            <input type="text" id="l_pupil_distance"
+                                                                   class="input-number left"
+                                                                   data-min="-1000" data-max="1000" data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">
+                                                                ↑
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Height</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">
+                                                                ↓
+                                                            </button>
+                                                            <input type="text" id="l_progression_length"
+                                                                   class="input-number left"
+                                                                   data-min="-1000" data-max="1000" data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">
+                                                                ↑
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="l_prism_attr">
+                                                <td>
+                                                    <label>Prism1</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_prism1"
+                                                                   class="input-number left"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Prism2</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_prism2"
+                                                                   class="input-number left"
+                                                                   data-step="0.25"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Base1</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_base1"
+                                                                   class="input-number left"
+                                                                   data-step="1"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <label>Base2</label>
+                                                    <div class="incr-decr-control-wrap">
+                                                        <div class="incr-decr-control">
+                                                            <button type="button" tabindex="-1" class="button-decrement"
+                                                                    value="-">↓
+                                                            </button>
+                                                            <input type="text" id="_pres_l_base2"
+                                                                   class="input-number left"
+                                                                   data-step="1"/>
+                                                            <button type="button" tabindex="-1" class="button-increment"
+                                                                    value="+">↑
+                                                            </button>
+                                                        </div>
+                                                        <span class="range_text"></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h3 id="continue_alert"></h3>
+                                    </div>
+                                </div>
+                                <main class="main-content" id="prescription_continue">
+                                    <div class="row">
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-9 text-right">
+
+                                            <br/>
+                                            <a href="/shop" role="button" class="btn btn-secondary next_div">
+                                                <span class="fa fa-chevron-left"></span>
+                                                Back
+                                            </a>
+                                            <a href="javascript:void(0);" id="choose_product" role="button"
+                                               class="btn btn-primary">
+                                                Checkout
+                                                <span class="fa fa-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+
+
+                        </main>
+
+                        <main class="main-content vip" id="individual_page" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-3" style="background-color: white !important;">
+                                    <aside class="sidebar">
+                                        <nav class="navigation-stepper">
+                                            <ol>
+                                                <li class="pres">
+                                                    <a href="#priscription" class="page_shift">Prescription
+                                                    </a>
+                                                </li>
+                                                <li class="ind" style="display:none;">
+                                                    <a href="#individual_page" class="page_shift">Indiv. parameter
+                                                    </a>
+                                                </li>
+                                                <li class="colo" style="display:none;">
+                                                    <a href="#color_page" class="page_shift">Colour
+                                                    </a>
+                                                </li>
+                                                <li class="coa" style="display:none;">
+                                                    <a href="#coating_page" class="page_shift">Coating
+                                                    </a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+
+                                    </aside>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="heading clearfix">
+                                        <div class="header-extra">
+                                            <div class="inner_section1">
+                                                <a href="#backperscription" class="next_div" id="nextbutton-sidebar2">«
+                                                    back
+                                                    <span class="arrow highlight" style="font-size: 15px">«</span>
+                                                </a>
+                                                <span class="arrow highlight" style="font-size: 15px">|</span>
+                                                <a href="" class="next_div" id="nextbutton-individual"
+                                                   style="display:none;">continue
+                                                    <span class="arrow highlight" style="font-size: 15px">»</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lens-configurator-container">
+
+
+                                        <div class="area-vip ">
+                                            <h2 class="product_name"></h2>
+                                            <fieldset class="section" id="pupil_distance" style="display:none;">
+                                                <h5>Pupil distance (PD)</h5>
+                                                <h3 id="error_pd"></h3>
+                                                <table class="form form-small">
+                                                    <tbody>
+                                                        <tr id="rpd" style="display:none;">
+                                                            <td class="cell-small">
+                                                                <label for="inp-pd-right">Right (mm)</label>
+                                                                <br/>
+                                                                <input type="text" min="15" step="0.1" max="40"
+                                                                       class="input-number" name="pd_right_field"
+                                                                       id="pd_right_field" value=""/>
+                                                                <div class="inputinfo" id="right_pupil_distance"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <br/>
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id='pd_right_default_id'
+                                                                               name="pd-right-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-pd-right-default"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="right_pupil_distance_standard"></span>
+                                                                    <span>mm</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="lpd" style="display:none;">
+                                                            <td class="cell-small">
+                                                                <label for="inp-pd-left">Left (mm)</label>
+                                                                <br/>
+                                                                <input type="text" min="15" step="0.1" max="40"
+                                                                       class="input-number" name="pd_left_field"
+                                                                       id="pd_left_field" value=""/>
+                                                                <div class="inputinfo" id="left_pupil_distance"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <br/>
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id="pd_right_default_id2"
+                                                                               name="pd-left-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-pd-left-default"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="left_pupil_distance_standard"></span>
+                                                                    <span>mm</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+
+                                            <fieldset class="section" id="bvd_section" style="display:none;">
+                                                <h5>Back vertex distance (BVD)</h5>
+                                                <h3 id="error_bvd"></h3>
+                                                <table class="form form-small">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <input type="text" min="7" step="0.1" max="30"
+                                                                       class="input-number" name="hsa_right_field"
+                                                                       id="hsa_right_field" value=""/>
+                                                                <div class="inputinfo" id="bvd"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id="hsa-right-default_id"
+                                                                               name="hsa-right-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-hsa-right-default"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="bvd_standard"></span>
+                                                                    <span>mm</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="display:none;">
+                                                            <td class="cell-small">
+                                                                <input type="text" min="7" step="0.1" max="30"
+                                                                       class="input-number" name="hsa_left_field"
+                                                                       id="hsa_left_field" value=""
+                                                                       onchange="format_vipfield('hsa_left_field', '1'); clientdata_setreqest('/vip/set_customerinput.php?setfieldname=hsa_left_field&amp;setfieldvalue='+encodeURIComponent(this.value)); validate_indi_hsa_field('left', 7, 30, 14.5);"
+                                                                       pattern="-?[0-9]*([,.]{1}[0-9]*)?"/>
+                                                                <div class="inputinfo">7 mm – 30 mm</div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <label class="toggle toggle-default">
+                                                                    <input type="checkbox"
+                                                                           onclick="set_hsa_field_value('left', 14.5, 7, 30, 14.5);"
+                                                                           name="hsa-left-default"/>
+
+                                                                    (standard: 14.5 mm)
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+                                            <fieldset class="section" id="pa_section" style="display:none;">
+                                                <h5>Pantoscopic angle (PantA)</h5>
+                                                <h3 id="error_panta"></h3>
+                                                <table class="form form-small">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <input type="text" min="-5" step="1" max="25"
+                                                                       class="input-number" name="vorneigung_field"
+                                                                       id="vorneigung_field" value=""/>
+                                                                <div class="inputinfo" id="pant_a"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id="vorneigung-default_id"
+                                                                               name="vorneigung-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-vorneigung-default_id"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="panta_standard"></span>
+                                                                    <span>degree</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+                                            <fieldset class="section" id="ba_section" style="display:none;">
+                                                <h5>Bow angle (BA)</h5>
+                                                <h3 id="error_ba"/>
+                                                <table class="form form-small">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <input type="text" min="0" step="1" max="35"
+                                                                       class="input-number" name="scheibenwinkel_field"
+                                                                       id="scheibenwinkel_field" value=""/>
+                                                                <div class="inputinfo" id="ba"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id="fsw-default_id"
+                                                                               name="fsw-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-fsw-default_id"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="ba_standard"></span>
+                                                                    <span>degree</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+                                            <fieldset class="section" id="nod_section" style="display:none;">
+                                                <h5>Near object distance (NOD)</h5>
+                                                <h3 id="error_nod"/>
+                                                <table class="form form-small">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <input type="text" min="200" step="1" max="600"
+                                                                       class="input-number" name="distance_field"
+                                                                       id="distance_field" value=""/>
+                                                                <div class="inputinfo" id="nod"></div>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <label class="toggle toggle-default">
+                                                                    <span class="check-container checkbox">
+                                                                        <input type="checkbox"
+                                                                               id="obj-id"
+                                                                               name="obj-default"/>
+                                                                        <span class="indicator"
+                                                                              id="indicator-obj-id"></span>
+                                                                    </span>
+                                                                    <span>standard:</span>
+                                                                    <span id="nod_standard"></span>
+                                                                    <span>mm</span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+
+                                            <fieldset class="section" id="inset" style="display:none;">
+                                                <h5>Inset</h5>
+                                                <table class="form form-small form-small-special">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <label for="inp-pd-right">Right (mm)</label>
+                                                                <br/>
+                                                                <!--                                                                <select size="1" name="inset_right_select"-->
+                                                                <!--                                                                        id="inset_right_select"-->
+                                                                <!--                                                                        style="width: 130px; display: none;"-->
+                                                                <!--                                                                        onchange="clientdata_setreqest('/vip/set_customerinput.php?setfieldname=inset_right_select&amp;setfieldvalue='+encodeURIComponent(document.getElementById('inset_right_select').value));"-->
+                                                                <!--                                                                        class="custom-select selectized" tabindex="-1">-->
+                                                                <!--                                                                    <option value="auto" selected="selected">Automatic-->
+                                                                <!--                                                                    </option>-->
+                                                                <!--                                                                    <option>0.00    4.00</option>-->
+                                                                <!--                                                                </select>-->
+                                                                <!--                                                                <div class="selectize-control custom-select single"-->
+                                                                <!--                                                                     style="width: 130px;">-->
+                                                                <!--                                                                    <div class="selectize-input items full has-options has-items">-->
+                                                                <!--                                                                        <div data-value="auto" class="item">Automatic-->
+                                                                <!--                                                                        </div>-->
+                                                                <!--                                                                        <input type="text" autocomplete="off"-->
+                                                                <!--                                                                               tabindex=""-->
+                                                                <!--                                                                               style="width: 4px;opacity: 0;position: absolute;left: -10000px;"/>-->
+                                                                <!--                                                                    </div>-->
+                                                                <!--                                                                    <div class="selectize-dropdown single custom-select"-->
+                                                                <!--                                                                         style="display: none;">-->
+                                                                <!--                                                                        <div class="selectize-dropdown-content"></div>-->
+                                                                <!--                                                                    </div>-->
+                                                                <!--                                                                </div>-->
+                                                                <select class="right_inset">
+                                                                    <option value="Automatic" selected="selected">
+                                                                        Automatic
+                                                                    </option>
+                                                                    <option value="0.00">0.00</option>
+                                                                    <option value="0.25">0.25</option>
+                                                                    <option value="0.50">0.50</option>
+                                                                    <option value="0.75">0.75</option>
+                                                                    <option value="1.00">1.00</option>
+                                                                    <option value="1.25">1.25</option>
+                                                                    <option value="1.50">1.50</option>
+                                                                    <option value="1.75">1.75</option>
+                                                                    <option value="2.00">2.00</option>
+                                                                    <option value="2.25">2.25</option>
+                                                                    <option value="2.50">2.50</option>
+                                                                    <option value="2.75">2.75</option>
+                                                                    <option value="3.00">3.00</option>
+                                                                    <option value="3.25">3.25</option>
+                                                                    <option value="3.50">3.50</option>
+                                                                    <option value="3.75">3.75</option>
+                                                                    <option value="4.00">4.00</option>
+                                                                </select>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <br/>
+                                                                <label class="toggle toggle-default">
+                                                                    (standard Automatic)
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cell-small">
+                                                                <label for="inp-pd-left">Left (mm)</label>
+                                                                <br/>
+                                                                <!--                                                                <select size="1" name="inset_left_select"-->
+                                                                <!--                                                                        id="inset_left_select"-->
+                                                                <!--                                                                        style="width: 130px; display: none;width: 4px;opacity: 0;position: absolute;left: -10000px;"-->
+                                                                <!--                                                                        onchange="clientdata_setreqest('/vip/set_customerinput.php?setfieldname=inset_left_select&amp;setfieldvalue='+encodeURIComponent(document.getElementById('inset_left_select').value));"-->
+                                                                <!--                                                                        class="custom-select selectized" tabindex="-1">-->
+                                                                <!--                                                                    <option value="auto" selected="selected">Automatic-->
+                                                                <!--                                                                    </option>-->
+                                                                <!--                                                                    <option>0.00    4.00</option>-->
+                                                                <!--                                                                </select>-->
+                                                                <!--                                                                <div class="selectize-control custom-select single"-->
+                                                                <!--                                                                     style="width: 130px;">-->
+                                                                <!--                                                                    <div class="selectize-input items full has-options has-items">-->
+                                                                <!--                                                                        <div data-value="auto" class="item">Automatic-->
+                                                                <!--                                                                        </div>-->
+                                                                <!--                                                                        <input type="text" autocomplete="off"-->
+                                                                <!--                                                                               tabindex=""-->
+                                                                <!--                                                                               style="width: 4px;display: none;width: 4px;opacity: 0;position: absolute;left: -10000px;"/>-->
+                                                                <!--                                                                    </div>-->
+                                                                <!--                                                                    <div class="selectize-dropdown single custom-select"-->
+                                                                <!--                                                                         style="display: none;">-->
+                                                                <!--                                                                        <div class="selectize-dropdown-content"></div>-->
+                                                                <!--                                                                    </div>-->
+                                                                <!--                                                                </div>-->
+                                                                <select class="left_inset">
+                                                                    <option value="Automatic" selected="selected">
+                                                                        Automatic
+                                                                    </option>
+                                                                    <option value="0.00">0.00</option>
+                                                                    <option value="0.25">0.25</option>
+                                                                    <option value="0.50">0.50</option>
+                                                                    <option value="0.75">0.75</option>
+                                                                    <option value="1.00">1.00</option>
+                                                                    <option value="1.25">1.25</option>
+                                                                    <option value="1.50">1.50</option>
+                                                                    <option value="1.75">1.75</option>
+                                                                    <option value="2.00">2.00</option>
+                                                                    <option value="2.25">2.25</option>
+                                                                    <option value="2.50">2.50</option>
+                                                                    <option value="2.75">2.75</option>
+                                                                    <option value="3.00">3.00</option>
+                                                                    <option value="3.25">3.25</option>
+                                                                    <option value="3.50">3.50</option>
+                                                                    <option value="3.75">3.75</option>
+                                                                    <option value="4.00">4.00</option>
+                                                                </select>
+                                                            </td>
+                                                            <th class="vip-padding"></th>
+                                                            <td class="vip-padding">
+                                                                <br/>
+                                                                <label class="toggle toggle-default">
+                                                                    (standard autmatic)
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+
+                                            <fieldset class="section" id="pl_section" style="display:none;">
+                                                <h5>Progression length(Fitting height)</h5>
+                                                <table class="form form-small form-small-special">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <!--                                                                <select size="1" name="fittingheight_select"-->
+                                                                <!--                                                                        id="fittingheight_select"-->
+                                                                <!--                                                                        style="width: 130px; display: none;display: none;width: 4px;opacity: 0;position: absolute;left: -10000px;"-->
+                                                                <!--                                                                        onchange="clientdata_setreqest('/vip/set_customerinput.php?setfieldname=fittingheight_select&amp;setfieldvalue='+encodeURIComponent(document.getElementById('fittingheight_select').value));"-->
+                                                                <!--                                                                        class="custom-select selectized" tabindex="-1">-->
+                                                                <!--                                                                    <option value="0" selected="selected"></option>-->
+                                                                <!--                                                                </select>-->
+                                                                <!--                                                                <div class="selectize-control custom-select single"-->
+                                                                <!--                                                                     style="width: 130px;">-->
+                                                                <div style="width: 130px;">
+                                                                    <!--                                                                    <div class="selectize-input items full has-options has-items">-->
+                                                                    <!--                                                                        <div data-value="0" class="item"></div>-->
+                                                                    <!--                                                                        <input type="text" autocomplete="off"-->
+                                                                    <!--                                                                               tabindex=""-->
+                                                                    <!--                                                                               style="width: 4px;opacity: 0;position: absolute;left: -10000px;"/>-->
+                                                                    <!--                                                                    </div>-->
+                                                                    <!--                                                                    <div class="selectize-dropdown single custom-select"-->
+                                                                    <!--                                                                         style="display: none;">-->
+                                                                    <!--                                                                        <div class="selectize-dropdown-content"></div>-->
+                                                                    <!--                                                                    </div>-->
+                                                                    <select name="fittingheight_select"
+                                                                            id="fittingheight_select">
+                                                                        <option value="0" selected="selected"></option>
+                                                                    </select>
+                                                                </div>
+                                                                <!--                                                                <div class="inputinfo">(mm)</div>-->
+                                                            </th>
+                                                            <td class="cell-small">
+                                                            </td>
+                                                            <td>
+                                                                <label class="toggle toggle-default">
+                                                                    <br/>
+
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+                                            <fieldset class="section" style="display:none;">
+                                                <h5>Personal engraving</h5>
+                                                <table class="form">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <label for="inp-pd-right">(facultative)</label>
+                                                            </th>
+                                                            <td class="cell-small" style="width:140px;">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <input type="text" class="input-text"
+                                                                                       name="gravur1_field"
+                                                                                       id="gravur1_field"
+                                                                                       value=""
+                                                                                       onblur="format_charfield('gravur1_field'); clientdata_setreqest('/vip/set_customerinput.php?setfieldname=gravur1_field&amp;setfieldvalue='+encodeURIComponent(this.value));"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="input-text"
+                                                                                       name="gravur2_field"
+                                                                                       id="gravur2_field"
+                                                                                       value=""
+                                                                                       onblur="format_charfield('gravur2_field'); clientdata_setreqest('/vip/set_customerinput.php?setfieldname=gravur2_field&amp;setfieldvalue='+encodeURIComponent(this.value));"/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" class="input-text"
+                                                                                       name="gravur3_field"
+                                                                                       id="gravur3_field"
+                                                                                       value=""
+                                                                                       onblur="format_charfield('gravur3_field'); clientdata_setreqest('/vip/set_customerinput.php?setfieldname=gravur3_field&amp;setfieldvalue='+encodeURIComponent(this.value));"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                            <td>
+                                                                <label class="toggle toggle-default">
+                                                                    (1-3 capital letters)
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+
+                                        </div>
+
+                                        <footer class="form-footer clearfix">
+                                            <!--                                            <a style="line-height: 38px" href="/Correction/?basket=1&amp;check=1"-->
+                                            <!--                                               class="button button-light button-left button-back">-->
+                                            <!--                                                <span class="arrow">‹</span>-->
+                                            <!--                                                Back-->
+                                            <!--                                            </a>-->
+                                            <!--                                            <a href="/Color/?basket=1&amp;check=1"-->
+                                            <!--                                               class="button button-light button-right button-next"-->
+                                            <!--                                               id="nextbutton-footer">-->
+                                            <!--                                                continue-->
+                                            <!--                                                <span class="arrow highlight" style="font-size: 15px">»</span>-->
+                                            <!--                                            </a>-->
+                                        </footer>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <main class="main-content" id="individual_parameters_continue" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-9 text-right">
+
+                                            <br/>
+                                            <a href="#backperscription" role="button"
+                                               class="btn btn-secondary next_div">
+                                                <span class="fa fa-chevron-left"></span>
+                                                Back
+                                            </a>
+                                            <a href="javascript:void(0);" id="choose_product" role="button"
+                                               class="btn btn-primary">
+                                                Checkout
+                                                <span class="fa fa-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </main>
+                        <!--                        start colour code-->
+                        <main class="main-content color" id="color_page" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-3" style="background-color: white !important;">
+                                    <aside class="sidebar">
+                                        <nav class="navigation-stepper">
+                                            <ol>
+                                                <li class="pres">
+                                                    <a href="#priscription" class="page_shift">Prescription
+                                                    </a>
+                                                </li>
+                                                <li class="ind" style="display:none;">
+                                                    <a href="#individual" class="page_shift">Indiv. parameter
+                                                    </a>
+                                                </li>
+                                                <li class="colo" style="display:none;">
+                                                    <a href="#color_page" class="page_shift">Colour
+                                                    </a>
+                                                </li>
+                                                <li class="coa" style="display:none;">
+                                                    <a href="#coating_page" class="page_shift">Coating
+                                                    </a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+
+                                    </aside>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="heading clearfix">
+                                        <h1>
+
+
+                                            <a href="#" data-popup="/Lens_Detail/?lens_detail=G6MORX"
+                                               data-popup-height="460"
+                                               data-popup-width="750">
+                                                <!--                                                <span class="span-svg span-icon-infoicon">-->
+                                                <!--                                                </span>-->
+                                            </a>
+
+                                        </h1>
+                                        <div class="header-extra">
+                                            <h2 id="get_product_name"/>
+                                            <h8 id="get_product_id" style="display:none;"/>
+                                            <!--                                            <div class="inner_section">-->
+                                            <!--                                                <button type="button" class="button button-small colored"-->
+                                            <!--                                                        data-popup="/popup_lenschange/" data-popup-width="1200"-->
+                                            <!--                                                        data-popup-height="780"-->
+                                            <!--                                                        style="background: none; border: 0px; cursor: pointer;">Change-->
+                                            <!--                                                    of-->
+                                            <!--                                                    the base-->
+                                            <!--                                                    lens-->
+                                            <!--                                                </button>-->
+                                            <!--                                            </div>-->
+                                            <div class="inner_section1">
+                                                <a href="#backindividual" class="next_div" id="nextbutton-sidebar4">«
+                                                    back
+                                                    <span class="arrow highlight" style="font-size: 15px">«</span>
+                                                </a>
+                                                <span class="arrow highlight" style="font-size: 15px">|</span>
+                                                <a href="" class="next_div" id="nextbutton-color" style="display:none;">
+                                                    continue
+                                                    <span class="arrow highlight" style="font-size: 15px">»</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lens-configurator-container">
+                                        <fieldset class="section">
+                                            <div id="product_colour_selection"/>
+                                            <div class="col-md-12">
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h2 class="product_name"></h2>
+                                                        <table class="table" id="product_colour_selection_table">
+                                                            <!--                                                            <tr>-->
+                                                            <!--                                                                <td>-->
+                                                            <!--                                                                    <div class="dt_row">-->
+                                                            <!--                                                                        <div>-->
+                                                            <!--                                                                            <label class="rad-label">-->
+                                                            <!--                                                                                <input type="radio" class="rad-input"-->
+                                                            <!--                                                                                       name="color"/>-->
+                                                            <!--                                                                                <div class="rad-design"></div>-->
+                                                            <!--                                                                                <div class="rad-text">UV Filter</div>-->
+                                                            <!--                                                                            </label>-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                            <label class="rad-label">&ndash;&gt;-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                                <input type="radio" class="rad-input"&ndash;&gt;-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                                       name="rad"/>&ndash;&gt;-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                                <div class="rad-design"></div>&ndash;&gt;-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                                <div class="rad-text">Green</div>&ndash;&gt;-->
+                                                            <!--                                                                            &lt;!&ndash;                                                                            </label>&ndash;&gt;-->
+
+                                                            <!--                                                                        </div>-->
+                                                            <!--                                                                    </div>-->
+                                                            <!--                                                                </td>-->
+                                                            <!--                                                                <td>2.96</td>-->
+
+                                                            <!--                                                            </tr>-->
+
+                                                            <tr>
+                                                                <th>Color</th>
+                                                                <th>Price</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="dt_row">
+                                                                        <div>
+                                                                            <label class="rad-label">
+                                                                                <input type="radio" class="rad-input"
+                                                                                       name="color" checked="checked"/>
+                                                                                <div class="rad-design product_color_radio"></div>
+                                                                                <div class="rad-text">None</div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <select name="Color selection" id="color_selection_name" price=""
+                                                    style="display:none;">
+
+                                            </select>
+
+                                            <select id="color_selection_value" style="display:none;">
+
+                                            </select>
+
+
+                                            <!--                                            <select id="color_selection_value" style="display:none;">-->
+                                            <!--                                                <option t-value="&#45;&#45;">-->
+                                            <!--                                                    &#45;&#45;Select Value&#45;&#45;-->
+                                            <!--                                                </option>-->
+                                            <!--                                            </select>-->
+
+                                        </fieldset>
+
+
+                                        <footer class="form-footer clearfix">
+                                            <!--                                            <a style="line-height: 34px" href="/vip/?basket=1&amp;check=1"-->
+                                            <!--                                               class="button button-light button-left button-back">-->
+                                            <!--                                                <span class="arrow">‹</span>-->
+                                            <!--                                                Back-->
+                                            <!--                                            </a>-->
+
+                                            <!--                                            <a href="/Coating/?basket=1&amp;check=1"-->
+                                            <!--                                               class="button button-light button-right button-next"-->
+                                            <!--                                               id="nextbutton-footer">-->
+                                            <!--                                                continue-->
+                                            <!--                                                <span class="arrow highlight" style="font-size: 15px">»</span>-->
+                                            <!--                                            </a>-->
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                    </div>
+                                    <div class="col-md-9">
+                                        <main class="main-content" id="color_continue" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-md-3">
+
+                                                </div>
+                                                <div class="col-md-9 text-right">
+
+                                                    <br/>
+                                                    <a href="#backindividual" role="button" id="color_back_button_link"
+                                                       class="btn btn-secondary next_div">
+                                                        <span class="fa fa-chevron-left"></span>
+                                                        Back
+                                                    </a>
+                                                    <a href="javascript:void(0);" id="choose_product" role="button"
+                                                       class="btn btn-primary">
+                                                        Checkout
+                                                        <span class="fa fa-chevron-right"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </main>
+                        <!--                        End colour Code-->
+                        <!--                        coating code start-->
+                        <main class="main-content coating" id="coating_page" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-3" style="background-color: white !important;">
+                                    <aside class="sidebar">
+                                        <nav class="navigation-stepper">
+                                            <ol>
+                                                <li class="pres">
+                                                    <a href="#priscription" class="page_shift">Prescription
+                                                    </a>
+                                                </li>
+                                                <li class="ind" style="display:none;">
+                                                    <a href="#individual" class="page_shift">Indiv. parameter
+                                                    </a>
+                                                </li>
+                                                <li class="colo" style="display:none;">
+                                                    <a href="#color_page" class="page_shift">Colour
+                                                    </a>
+                                                </li>
+                                                <li class="coa" style="display:none;">
+                                                    <a href="#coating_page" class="page_shift">Coating
+                                                    </a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+
+                                    </aside>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="heading clearfix">
+                                        <h1>
+
+
+                                            <a href="#" data-popup="/Lens_Detail/?lens_detail=G6MORX"
+                                               data-popup-height="460"
+                                               data-popup-width="750">
+                                                <!--                                                <span class="span-svg span-icon-infoicon">-->
+                                                <!--                                                </span>-->
+                                            </a>
+
+                                        </h1>
+                                        <div class="header-extra">
+                                            <h2 id="get_product_name"/>
+                                            <h8 id="get_product_id" style="display:none;"/>
+                                            <div class="inner_section1">
+                                                <a href="#backcoating" class="next_div" id="coating_back_button">«
+                                                    back
+                                                    <span class="arrow highlight" style="font-size: 15px">«</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="lens-configurator-container">
+                                        <fieldset class="section">
+                                            <div id="product_coating"/>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h2 class="product_name"></h2>
+                                                        <table class="table" id="product_coating_table">
+                                                            <tr>
+                                                                <th>Coating</th>
+                                                                <th>Price</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="dt_row">
+                                                                        <div>
+                                                                            <label class="rad-label">
+                                                                                <input type="radio" class="rad-input"
+                                                                                       name="coating"
+                                                                                       checked="checked"/>
+                                                                                <div class="rad-design product_color_radio"></div>
+                                                                                <div class="rad-text">None</div>
+                                                                            </label>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                        <div class="modal fade" id="infoModel" tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="exampleModalCenterTitle"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                 role="document">
+                                                                <div class="modal-content">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                        <span id="modal_product_name"></span>
+                                                                        <span style="float: right; padding-right:15px;">
+                                                                            ×
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <div class="modal-body"
+                                                                         style="color: black !important;font-size: 24px;font-weight: 300;">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal fade" id="optiplasModel" tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="exampleModalCenterTitle"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                 role="document">
+                                                                <div class="modal-content">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                        <span style="float: right; padding-right:15px;">
+                                                                            ×
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <div class="modal-body"
+                                                                         style="color: black !important;font-size: 24px;font-weight: 300;">
+                                                                        Optiplas O+ coating is only available for
+                                                                        complete pair orders due to matching the
+                                                                        rest-reflex of the
+                                                                        <br/>
+                                                                        coating. Please contact us. We will issue a
+                                                                        credit for the second lens.
+                                                                        <br/>
+                                                                        <br/>
+                                                                        Thank you for understanding.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal fade" id="optiplas_blue_cx_Model"
+                                                             tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="exampleModalCenterTitle"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                 role="document">
+                                                                <div class="modal-content">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                        <span style="float: right; padding-right:15px;">
+                                                                            ×
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <div class="modal-body"
+                                                                         style="color: black !important;font-size: 24px;font-weight: 300;">
+                                                                        Please be aware that due to production
+                                                                        restraints, <b>Optiplas Blue CX UV</b> is only
+                                                                        available in
+                                                                        <br/>
+                                                                        combination with colours of more than 50%,
+                                                                        Please make a change in the colour section or
+                                                                        choose a
+                                                                        <br/>
+                                                                        different coating.
+                                                                        <br/>
+                                                                        <br/>
+                                                                        Thank you for understanding.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <select name="Coating selection" id="coating_selection_name" price=""
+                                                    style="display:none;">
+
+                                            </select>
+
+                                        </fieldset>
+
+                                        <footer class="form-footer clearfix">
+                                        </footer>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <main class="main-content" id="coating_continue" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                    </div>
+                                    <div class="col-md-9 text-right">
+
+                                        <br/>
+                                        <a href="#backcolor" id="coating_back_button_link" role="button"
+                                           class="btn btn-secondary next_div">
+                                            <span class="fa fa-chevron-left"></span>
+                                            Back
+                                        </a>
+                                        <a href="javascript:void(0);" id="choose_product" role="button"
+                                           class="btn btn-primary">
+                                            Checkout
+                                            <span class="fa fa-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </main>
+
+                        </main>
+
+
+                        <div class="row">
+                            <br/>
+                            <br/>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

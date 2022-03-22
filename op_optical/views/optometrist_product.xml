@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="optometrist_product">
+        <field name="name">optometrist.product</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="editable" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
+                <field name="type"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+                <group>
+
+                        <field name="lens_side" attrs="{'invisible': [('type', '!=', 'lens')]}"/>
+                        <!--  ************ Diopter ID *************** -->
+                        <field name="dioptre_id"/>
+                        <field name="product_template_id" invisible="1"/>
+                        <field name="parent_so_line" invisible="1"/>
+
+                        <field name="is_lpd" invisible="1"/>
+                        <field name="is_rpd" invisible="1"/>
+                        <field name="is_bvd" invisible="1"/>
+                        <field name="is_pant_a" invisible="1"/>
+                        <field name="is_ba" invisible="1"/>
+                        <field name="is_nod" invisible="1"/>
+                        <field name="is_progression_length" invisible="1"/>
+                        <field name="is_dpt_two" invisible="1"/>
+                        <field name="is_inset" invisible="1"/>
+                        <field name="is_cod" invisible="1"/>
+                        <field name="is_rlf" invisible="1"/>
+                </group>
+                <group colspan="2">
+
+                    <group string="Left Side" attrs="{'invisible': ['|', ('lens_side', '=', 'right'),('type', '!=', 'lens')]}">
+
+
+                        <label string="Lt. Diameter" for="l_diameter_id" class="o_light_label"/>
+                        <field name="l_diameter_id" widget="selection"/>
+                        <group>
+                            <field name="l_sphere" string="Lt. Sp"/>
+                            <field name="l_cylinder"/>
+                            <field name="l_axis"/>
+                            <field name="l_addition"/>
+                        </group>
+                        <group>
+                            <field name="l_prism1"/>
+                            <field name="l_prism2"/>
+                            <field name="l_base1"/>
+                            <field name="l_base2"/>
+
+                            <field name="l_spherometer_dpt"/>
+                        </group>
+
+                    </group>
+                    <group string="Right Side" attrs="{'invisible': ['|', ('lens_side', '=', 'left'),('type', '!=', 'lens')]}">
+                          <label string="Rt. Diameter" for="r_diameter_id" class="o_light_label"/>
+                          <field name="r_diameter_id" widget="selection" />
+
+                        <group>
+                            <field name="r_sphere"/>
+                            <field name="r_cylinder"/>
+                            <field name="r_axis"/>
+                            <field name="r_addition"/>
+                        </group>
+                        <group>
+                            <field name="r_prism1"/>
+                            <field name="r_prism2"/>
+                            <field name="r_base1"/>
+                            <field name="r_base2"/>
+
+                            <field name="r_spherometer_dpt"/>
+                        </group>
+                    </group>
+                    <seperator/>
+                </group>
+                <!--  ******** IS Individual Parameter Field ***********-->
+                <field name="is_individual_parameter_configurable" invisible="1"/>
+                <group>
+
+                    <field name="lpd" attrs="{'invisible': [('is_lpd', '=', False)]}"/>
+                    <field name="rpd" attrs="{'invisible': [('is_rpd', '=', False)]}"/>
+                    <field name="bdv" attrs="{'invisible': [('is_bvd', '=', False)]}"/>
+                    <field name="panta" attrs="{'invisible': [('is_pant_a', '=', False)]}"/>
+                    <field name="ba" attrs="{'invisible': [('is_ba', '=', False)]}"/>
+                    <field name="nod" attrs="{'invisible': [('is_nod', '=', False)]}"/>
+                    <!-- *****************  COD ************************-->
+                    <field name="cod" invisible="1"/>
+
+                    <field name="r_inset" attrs="{'invisible': [('is_inset', '=', False)]}"/>
+                    <field name="l_inset" attrs="{'invisible': [('is_inset', '=', False)]}"/>
+                    <!-- *****************  CHANNEL LENGTH ************************-->
+                    <field name="channel_length" invisible="1"/>
+
+                    <field name="progression_length" attrs="{'invisible': [('is_progression_length', '=', False)]}"/>
+
+                </group>
+                <group>
+                    <field name="rlf_a" attrs="{'invisible': [('is_rlf', '=', False)]}"/>
+                    <field name="rlf_b" attrs="{'invisible': [('is_rlf', '=', False)]}"/>
+                    <field name="rlf_c" attrs="{'invisible': [('is_rlf', '=', False)]}"/>
+                    <field name="rlf_d" attrs="{'invisible': [('is_rlf', '=', False)]}"/>
+                </group>
+                <group>
+                    <field name="cod_near" attrs="{'invisible': [('is_cod', '=', False)]}"/>
+                    <field name="cod_balance" attrs="{'invisible': [('is_cod', '=', False)]}"/>
+                    <field name="cod_far" attrs="{'invisible': [('is_cod', '=', False)]}"/>
+                </group>
+                <group>
+                    <field name="color_ids_domain" invisible="1"/>
+                    <field name="coating_ids_domain" invisible="1"/>
+                    <field name="color_id" domain="color_ids_domain" options="{'no_create': True,'no_create_edit': True}" attrs="{'invisible': [('type', '!=', 'lens')]}"/>
+                    <field name="uv_filter" attrs="{'invisible': [('type', '!=', 'lens')]}"/>
+                    <field name="is_coating" invisible="1"/>
+                    <field name="coating_id" domain="coating_ids_domain" options="{'no_create': True,'no_create_edit': True}" attrs="{'invisible': ['|', ('type', '!=', 'lens'), ('is_coating', '!=', True)]}"/>
+<!--                    <field name="coating_id" domain="coating_ids_domain" options="{'no_create': True,'no_create_edit': True}" attrs="{'invisible': [('type', '!=', 'lens')]}"/>-->
+                    <field name="is_flash_mirror" invisible="1"/>
+                    <field name="add_flash_mirror" attrs="{'invisible': [('is_flash_mirror', '!=', True)]}"/>
+                    <field name="flash_mirror_coating_id" options="{'no_create': True,'no_create_edit': True}" attrs="{'invisible': [('add_flash_mirror', '!=', True)]}"/>
+<!--                    <field name="flash_mirror_coating_id" options="{'no_create': True,'no_create_edit': True}"/>-->
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <!-- <template id="assets_backend_inherit_sale_" inherit_id="web.assets_backend" name="Sale backend assets">
+        <xpath expr="script[contains(@src,'/sale_product_configurator/static/src/js/product_configurator_renderer.js')]" position="replace">
+            <script type="text/javascript" src="/op_optical/static/src/js/product_configurator_renderer.js"/>
+        </xpath>
+        <xpath expr="script[contains(@src,'/sale_product_configurator/static/src/js/product_configurator_controller.js')]" position="replace">
+            <script type="text/javascript" src="/op_optical/static/src/js/product_configurator_controller.js"/>
+        </xpath>
+        <xpath expr="script[contains(@src,'/sale_product_configurator/static/src/js/product_configurator_view.js')]" position="replace">
+            <script type="text/javascript" src="/op_optical/static/src/js/product_configurator_view.js"/>
+        </xpath>
+        <xpath expr="script[contains(@src,'/sale_product_configurator/static/src/js/product_configurator_widget.js')]" position="replace">
+            <script type="text/javascript" src="/op_optical/static/src/js/product_configurator_widget.js"/>
+        </xpath>
+        <xpath expr="script[contains(@src,'/sale_product_configurator/static/src/js/product_configurator_modal.js')]" position="replace">
+            <script type="text/javascript" src="/op_optical/static/src/js/product_configurator_modal.js"/>
+        </xpath>
+    </template> -->
+
+
+</odoo>
