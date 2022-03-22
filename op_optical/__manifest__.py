@@ -46,5 +46,5 @@
     'currency': 'USD',
     'qweb': ['static/src/xml/*.xml'],
     'application': True,
-    'images': ['/static/description/optical_erp.png'],
+    'images': ['static/description/optical_erp.png'],
 }
