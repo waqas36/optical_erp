@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Index World",
+    'name': "Optical ERP",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -42,7 +42,7 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'price': '0.00',
+    'price': '600',
     'currency': 'USD',
     'qweb': ['static/src/xml/*.xml'],
     'application': True,
