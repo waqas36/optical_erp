@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="163" height="84.336" viewBox="0 0 163 84.336">
+  <g id="Group_9129" data-name="Group 9129" transform="translate(-372 -824)">
+    <g id="Group_9128" data-name="Group 9128" transform="translate(109.241 -520.581)">
+      <path id="Path_1224" data-name="Path 1224" d="M339.605,1366.83v62.1c-2.544.107-4.151.166-4.151.166s-28.033-.148-33.671-19.577-3.706-29.813-3.706-29.813,1.037-8.9,12.014-10.68a148.389,148.389,0,0,1,18.837-1.929S333.36,1366.929,339.605,1366.83Z" transform="translate(0 -0.176)" fill="#54ccff" opacity="0.3"/>
+      <path id="Path_1225" data-name="Path 1225" d="M484.693,1411.861s-3.858,13.2-12.905,14.683c-6.759,1.109-22.45,1.885-29.961,2.208v-62.1c10.474-.166,26.049-.145,34.411,1.156,13.35,2.077,13.5,8.9,13.5,8.9S491.664,1384.718,484.693,1411.861Z" transform="translate(-102.221 0)" fill="#54ccff" opacity="0.3"/>
+      <g id="Group_9124" data-name="Group 9124" transform="translate(344.241 1371.814)">
+        <line id="Line_2" data-name="Line 2" x2="9.678" y2="5.562" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_3" data-name="Line 3" y1="1.327" x2="11.083" transform="translate(5.991 8.03)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_4" data-name="Line 4" x1="9.678" y1="5.562" transform="translate(24.471 3.795)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_5" data-name="Line 5" x1="11.083" y2="1.327" transform="translate(17.074 0)" fill="none" stroke="#fff" stroke-width="1"/>
+      </g>
+      <g id="Group_9125" data-name="Group 9125" transform="translate(344.241 1386.675)">
+        <line id="Line_6" data-name="Line 6" x2="9.678" y2="5.562" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_7" data-name="Line 7" y1="1.327" x2="11.083" transform="translate(5.991 8.03)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_8" data-name="Line 8" x1="9.678" y1="5.562" transform="translate(24.471 3.795)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_9" data-name="Line 9" x1="11.083" y2="1.327" transform="translate(17.074 0)" fill="none" stroke="#fff" stroke-width="1"/>
+      </g>
+      <g id="Group_9126" data-name="Group 9126" transform="translate(344.241 1396.753)">
+        <line id="Line_10" data-name="Line 10" x2="9.678" y2="5.562" transform="translate(0)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_11" data-name="Line 11" y1="1.327" x2="11.083" transform="translate(5.991 8.03)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_12" data-name="Line 12" x1="9.678" y1="5.562" transform="translate(24.471 3.795)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_13" data-name="Line 13" x1="11.083" y2="1.327" transform="translate(17.074)" fill="none" stroke="#fff" stroke-width="1"/>
+      </g>
+      <g id="Group_9127" data-name="Group 9127" transform="translate(344.241 1411.614)">
+        <line id="Line_14" data-name="Line 14" x2="9.678" y2="5.562" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_15" data-name="Line 15" y1="1.327" x2="11.083" transform="translate(5.991 8.03)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_16" data-name="Line 16" x1="9.678" y1="5.562" transform="translate(24.471 3.795)" fill="none" stroke="#fff" stroke-width="1"/>
+        <line id="Line_17" data-name="Line 17" x1="11.083" y2="1.327" transform="translate(17.074 0)" fill="none" stroke="#fff" stroke-width="1"/>
+      </g>
+      <line id="Line_18" data-name="Line 18" y2="62.098" transform="translate(339.605 1366.654)" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
+    </g>
+    <text id="With_hard_coating" data-name="With hard coating" transform="translate(407 833)" fill="#343dc0" font-size="8" font-family="OpenSans-Semibold, Open Sans" font-weight="600"><tspan x="-34" y="0">With hard coating</tspan></text>
+    <text id="Without_hard_coating" data-name="Without hard coating" transform="translate(494 833)" fill="#343dc0" font-size="8" font-family="OpenSans-Semibold, Open Sans" font-weight="600"><tspan x="-40" y="0">Without hard coating</tspan></text>
+  </g>
+</svg>
