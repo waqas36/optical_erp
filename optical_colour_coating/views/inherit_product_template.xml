@@ -41,13 +41,13 @@
 <!--            <xpath expr="//field[@name='product_type']" position="after" attrs="{'invisible':[('product_type','=', 'lens')]}">-->
 <!--                <field name="code"/>-->
 <!--            </xpath>-->
-            <xpath expr="//page[8]" position="after">
+            <xpath expr="//page[1]" position="after">
                 <page name="coating_desc" string="Coating Info" attrs="{'invisible':[('product_type','!=', 'coating')]}">
                     <label for="coating_desc"/>
                     <field name="coating_desc"/>
                 </page>
             </xpath>
-            <xpath expr="//page[8]" position="after">
+            <xpath expr="//page[1]" position="after">
                 <page name="product_info" string="Product Info" attrs="{'invisible':['|',('product_type','=', 'coating'), ('product_type','=', 'color')]}">
                     <label for="product_info"/>
                     <field name="product_info"/>

@@ -703,35 +703,35 @@ class SaleOrder(models.Model):
             return self.env['sale.order.line'].sudo().search(domain)
         return self.env['sale.order.line']
 
-    def action_confirm(self):
-        so_name = self.display_name
-        po = self.env['purchase.order'].search([('origin', '=', so_name)])
-        if not po:
-            order = super(SaleOrder, self).action_confirm()
-            purchase_order = self.env['purchase.order'].search([('origin', '=', so_name)])
-            purchase_order.button_confirm()
-            purchase_order.action_optiswiss()
-            return order
-            # return {
-            #     'type': 'ir.actions.client',
-            #     # 'tag': 'display_notification',
-            #     'tag': 'reload',
-            #     'params': {
-            #         'title': _('Order Successfullly Placed'),
-            #         'message': 'Order Successfully Placed at Optiswiss',
-            #         'sticky': False,
-            #     }
-            # }
-        else:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Sale Order already exist'),
-                    'message': '%s Sale order already exist in purchase order.' % so_name,
-                    'sticky': True,
-                }
-            }
+    # def action_confirm(self):
+    #     so_name = self.display_name
+    #     po = self.env['purchase.order'].search([('origin', '=', so_name)])
+    #     if not po:
+    #         order = super(SaleOrder, self).action_confirm()
+    #         purchase_order = self.env['purchase.order'].search([('origin', '=', so_name)])
+    #         purchase_order.button_confirm()
+    #         # purchase_order.action_optiswiss()
+    #         return order
+    #         # return {
+    #         #     'type': 'ir.actions.client',
+    #         #     # 'tag': 'display_notification',
+    #         #     'tag': 'reload',
+    #         #     'params': {
+    #         #         'title': _('Order Successfullly Placed'),
+    #         #         'message': 'Order Successfully Placed at Optiswiss',
+    #         #         'sticky': False,
+    #         #     }
+    #         # }
+    #     else:
+    #         return {
+    #             'type': 'ir.actions.client',
+    #             'tag': 'display_notification',
+    #             'params': {
+    #                 'title': _('Sale Order already exist'),
+    #                 'message': '%s Sale order already exist in purchase order.' % so_name,
+    #                 'sticky': True,
+    #             }
+    #         }
 
     def write(self, values):
         lines = values.get('order_line', False)
