@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="welcome_template" name="Welcome Template">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h1>Thank You!</h1>
+                <h2>We will get back to you soon.</h2>
+            </div>
+        </t>
+    </template>
+</odoo>

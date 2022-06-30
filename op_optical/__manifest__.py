@@ -20,22 +20,22 @@
     'version': '14.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'sale_management', 'website', 'website_sale'],
+    'depends': ['base', 'product', 'sale_management', 'coupon'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/optometrist_product.xml',
         'views/optometrist_product_configurator.xml',
-        'views/website_template.xml',
-        'views/cart_lines_template.xml',
-        'views/right_cart_template.xml',
+        # 'views/website_template.xml',
+        # 'views/cart_lines_template.xml',
+        # 'views/right_cart_template.xml',
         'views/diameter.xml',
-        'views/ecommerce_category.xml',
-        'views/sign_up.xml',
-        'views/user_resquest_menu.xml',
-        'views/welcome.xml',
-        'views/user_request_exist.xml',
+        # 'views/ecommerce_category.xml',
+        # 'views/sign_up.xml',
+        # 'views/user_resquest_menu.xml',
+        # 'views/welcome.xml',
+        # 'views/user_request_exist.xml',
         'views/res_currency.xml',
     ],
     # only loaded in demonstration mode

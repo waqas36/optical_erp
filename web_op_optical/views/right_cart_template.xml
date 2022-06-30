@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inherit_website_sale_total" inherit_id="website_sale.total">
+        <xpath expr="//table[@class='table']" position="replace">
+            <table class="table">
+                <tr id="empty">
+                    <t t-if="not no_rowspan">
+                        <td rowspan="10" class="border-0"/>
+                    </t>
+                    <td class="col-md-2 col-3 border-0"/>
+                    <td class="col-md-2 col-3 border-0"/>
+                </tr>
+                <tr id="order_total_untaxed">
+                    <td class="text-right border-0" style="border-top: none !important;">Subtotal:</td>
+                    <td class="text-xl-right border-0" style="border-top: none !important;">
+                        <span t-field="website_sale_order.amount_untaxed" class="monetary_field"
+                              style="white-space: nowrap;"
+                              t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+                <tr id="order_total">
+                    <td class="text-right">
+                        <strong>Total:</strong>
+                    </td>
+                    <td class="text-xl-right">
+                        <strong t-field="website_sale_order.amount_total" class="monetary_field"
+                                t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: website_sale_order.pricelist_id.currency_id}"/>
+                    </td>
+                </tr>
+                <tr id="order_total_taxes">
+                    <td class="text-right border-0" style="border-top: none !important;">Taxes:</td>
+                    <td class="text-xl-right border-0" style="border-top: none !important;">
+                        <span t-field="website_sale_order.amount_tax" class="monetary_field"
+                              style="white-space: nowrap;"
+                              t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                    </td>
+                </tr>
+                <tr t-if="not hide_coupon">
+                    <td colspan="3" class="text-center text-xl-right border-0">
+                        <span class="">
+                            <t t-set="force_coupon"
+                               t-value="website_sale_order.pricelist_id.code or request.params.get('code_not_available')"/>
+                            <t t-if="not force_coupon">
+                                <a href="#" class="show_coupon">I have a promo code</a>
+                            </t>
+                            <div t-attf-class="coupon_form #{not force_coupon and 'd-none'}">
+                                <t t-call="website_sale.coupon_form"/>
+                            </div>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+    <template id="inherit_cart_right_column" inherit_id="website_sale.cart_summary">
+        <!--        <xpath expr="//div[@class='card-body']" position="attributes">-->
+        <!--            <attribute name="style">{-->
+        <!--                    'background-color': black !important,-->
+        <!--                    'color': white !important,-->
+        <!--                }</attribute>-->
+        <!--        </xpath>-->
+        <xpath expr="//td[@class='td-product_name']" position="replace">
+            <td class="td-product_name" t-if="line.product_id.product_tmpl_id">
+                <div>
+                    <strong t-field="line.name_short"/>
+                </div>
+                <div t-if="line.color_id">
+                    <t t-esc="line.color_id.name"/>
+                </div>
+                <div t-if="line.coating_id">
+                    <t t-esc="line.coating_id.name"/>
+                </div>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="categories_recursive2" name="Category list">
+        <li class="nav-item">
+            <!--            <a href="javascript:void(0)" t-att-data-id="c.id"-->
+            <!--               class="product_category list-group-item list-group-item-action">-->
+            <!--                <t t-esc="c.name"/>-->
+            <!--            </a>-->
+            <a href="javascript:void(0)" t-att-data-id="c.id" t-if="c.is_category_active"
+               t-attf-class="product_category list-group-item list-group-item-action #{'child' if c.parent_id else ''}">
+                <t t-esc="c.name"/>
+            </a>
+            <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy" style="display:none;">
+                <t t-foreach="c.child_id" t-as="c">
+                    <t t-if="c.is_category_active" t-call="web_op_optical.categories_recursive2"/>
+                </t>
+            </ul>
+        </li>
+    </template>
+    <template id="categories_recursive3" name="Category list">
+        <!--        <li class="nav-item">-->
+        <!--            <a href="javascript:void(0)" t-att-data-id="c.id"-->
+        <!--               class="product_category list-group-item list-group-item-action">-->
+        <!--                <t t-esc="c.name"/>-->
+        <!--            </a>-->
+        <a t-if="c.child_id" href="javascript:void(0)" t-att-data-id="c.id"
+           t-attf-class="product_category list-group-item list-group-item-action #{'child' if c.parent_id else ''}">
+            <img t-if="c.image_1920" style="width:200px;" t-att-src="image_data_uri(c.image_1920)"
+                 t-att-data-id="c.id"/>
+        </a>
+        <!--            <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy" style="display:none;">-->
+        <!--                <t t-foreach="c.child_id" t-as="c">-->
+        <!--                    <t t-if="c.is_category_active" t-call="web_op_optical.categories_recursive2"/>-->
+        <!--                </t>-->
+        <!--            </ul>-->
+        <!--        </li>-->
+    </template>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="user_request_exist" name="User Request Exist">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h1>Your Request is Under Process.</h1>
+            </div>
+        </t>
+    </template>
+</odoo>
